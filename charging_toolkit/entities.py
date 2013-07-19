@@ -1,0 +1,166 @@
+#coding: utf-8
+import json
+import requests
+
+__all__ = ['Resource', 'Collection']
+
+
+class Resource(object):
+    url_attribute_name = 'url'
+    _session = None
+
+
+    def __init__(self, data, type=None, links={}, session=None):
+        self.resource_data = data
+        self._links = links
+        self._type = type
+        self._session = self._session or session
+
+        self.prepare_collections()
+
+    @classmethod
+    def load(cls, url, **kwargs):
+        type = kwargs.get('type')
+        session = kwargs.get('session')
+
+        if session is None:
+            user = kwargs.get('user', '')
+            password = kwargs.get('password', '')
+
+            session = requests.Session()
+            session.auth = (user, password)
+            session.headers.update({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Content-Length': '0',
+            })
+
+        response = session.get(url)
+        response.raise_for_status()
+
+        instance = cls(
+            data=response.json(),
+            type=type,
+            links=response.links,
+            session=session,
+        )
+        return instance
+
+    def __setattr__(self, name, value):
+        if (hasattr(self, 'resource_data')
+            and self.resource_data.has_key(name)
+            and not isinstance(value, Collection)):
+
+            self.resource_data[name] = value
+        else:
+            object.__setattr__(self, name, value)
+
+    def __getattribute__(self, name):
+        try:
+            return object.__getattribute__(self, name)
+        except AttributeError:
+            return object.__getattribute__(self, 'resource_data')[name]
+
+    @property
+    def url(self):
+        return self.resource_data.get(self.url_attribute_name)
+
+    @url.setter
+    def url(self, value):
+        self.resource_data[self.url_attribute_name] = value
+
+    def prepare_collections(self):
+        for item in self._links.values():
+            link_name = item['rel']
+            link_url = item['url']
+            link_collection = Collection(
+                link_url, type=link_name, session=self._session
+            )
+
+            setattr(self, link_name, link_collection)
+
+    def save(self):
+        response = self._session.put(
+            self.url,
+            data=json.dumps(self.resource_data),
+            headers={'Content-Length': str(len(dumped_data))}
+        )
+        response.raise_for_status()
+
+        self.resource_data = response.json()
+        self._links=response.links
+
+        return self
+
+    def delete(self):
+        response = self._session.delete(self.url)
+        response.raise_for_status()
+        # Checks status_code == 204
+
+    def reload(self):
+        response = self.session.get(self.url).json()
+        response.raise_for_status()
+
+        self.resource_data = response.json()
+        self._links=response.links
+
+        return self
+
+
+class Collection(object):
+    url = None
+    resource_class = Resource
+    _session = None
+
+    def __init__(self, url, type, **kwargs):
+        self.url = url
+        self._type = type
+        self._session = kwargs.get('session')
+
+        if self._session is None:
+            user = kwargs.get('user', '')
+            password = kwargs.get('password', '')
+
+            self._session = requests.Session()
+            self._session.auth = (user, password)
+            self._session.headers.update({
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Content-Length': '0',
+            })
+
+    def all(self):
+        url = self.url
+        while True:
+            response = self._session.get(url)
+            for item in response.json():
+                instance = self.resource_class(
+                    data=item, type=self._type
+                )
+                instance._session = self._session
+                yield instance
+
+            if not response.links.has_key('next'):
+                break
+
+            url = response.links['next']['url']
+
+    def get(self, identifier, append_slash=True):
+        if append_slash:
+            url_template = '{0}{1}/'
+        else:
+            url_template = '{0}{1}'
+
+        url = url_template.format(self.url, identifier)
+        return self.resource_class.load(url, type=self._type, session=self._session)
+
+    def create(self, **kwargs):
+        resource_data = json.dumps(kwargs)
+        response = self.session.post(
+            self.url,
+            headers={'content-length': str(len(resource_data))},
+            data=resource_data
+        )
+
+        response.raise_for_status()
+        return self.resource_class.load(response.Location, type=self._type, session=self._session)
