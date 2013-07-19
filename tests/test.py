@@ -79,3 +79,23 @@ class TestResourceLoad(TestCase):
                 )
 
 
+class TestResourceCollections(TestCase):
+
+    def setUp(self):
+        Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
+
+        with vcr.use_cassette('tests/cassettes/domain'):
+            self.resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
+    def test_all_should_return_a_list_of_the_charge_accounts_available(self):
+        with vcr.use_cassette('tests/cassettes/charge_accounts_all'):
+            charge_accounts = list(self.resource.charge_accounts.all())
+
+            self.assertTrue(len(charge_accounts), 2)
+            for item in charge_accounts:
+                self.assertEqual(item._type, self.resource.charge_accounts._type)
+                self.assertTrue(hasattr(item, TEST_API['URL_ATTRIBUTE_NAME']))
