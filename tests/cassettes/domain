@@ -1,0 +1,44 @@
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-48-generic]
+    method: GET
+    url: /domain/
+  response:
+    body: {string: '{"description": null, "uri": "http://localhost:8000/account/domains/b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Thu, 18
+        Jul 2013 18:49:50 GMT', etag: '"da39a3ee5e6b4b0d3255bfef95601890afd80709"',
+      link: '<http://localhost:8000/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.8.3
+        Python/2.7.3}
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-48-generic]
+    method: GET
+    url: /domain/
+  response:
+    body: {string: '{"description": null, "uri": "http://localhost:8000/account/domains/b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Thu, 18
+        Jul 2013 18:52:10 GMT', etag: '"da39a3ee5e6b4b0d3255bfef95601890afd80709"',
+      link: '<http://localhost:8000/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.8.3
+        Python/2.7.3}
+    status: {code: 200, message: OK}
