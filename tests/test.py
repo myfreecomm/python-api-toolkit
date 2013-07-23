@@ -134,3 +134,41 @@ class TestResourceCollections(TestCase):
         self.assertTrue(hasattr(charge_account, TEST_API['URL_ATTRIBUTE_NAME']))
         self.assertTrue(hasattr(charge_account, 'resource_data'))
 
+    def test_resources_created_by_collections_should_have_a_valid_session(self):
+        with vcr.use_cassette('tests/cassettes/charge_account/get'):
+            charge_account = list(self.resource.charge_accounts.all())[-1]
+
+            charge_account = self.resource.charge_accounts.get(charge_account.uuid)
+
+        self.assertTrue(hasattr(charge_account, '_session'))
+        session = charge_account._session
+
+        self.assertEqual(session.auth, (TEST_API['USER'], TEST_API['PASSWORD']))
+        self.assertEqual(session.headers['Accept'], 'application/json')
+        self.assertEqual(session.headers['Content-Type'], 'application/json')
+        self.assertEqual(session.headers['Content-Length'], '0')
+
+    def test_create_should_return_the_created_charge_account(self):
+        data = {
+            'bank': '237',
+            'name': 'Bradesco charge_account',
+            'agreement_code': '1234',
+            'portfolio_code': '11',
+            'agency': {'number': 412, 'digit': ''},
+            'account': {'number': 1432, 'digit': '6'},
+            'national_identifier': '86271628000147',
+        }
+
+        with vcr.use_cassette('tests/cassettes/charge_account/create'):
+            charge_account = self.resource.charge_accounts.create(
+                **data
+            )
+
+        self.assertTrue(isinstance(charge_account, Resource))
+
+        for item in data.items():
+            self.assertTrue(charge_account.resource_data.has_key(item[0]))
+            self.assertEqual(charge_account.resource_data[item[0]], item[1])
+
+        self.assertEqual(charge_account._session, self.resource.charge_accounts._session)
+
