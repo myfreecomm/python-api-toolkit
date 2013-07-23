@@ -156,11 +156,11 @@ class Collection(object):
 
     def create(self, **kwargs):
         resource_data = json.dumps(kwargs)
-        response = self.session.post(
+        response = self._session.post(
             self.url,
             headers={'content-length': str(len(resource_data))},
             data=resource_data
         )
 
         response.raise_for_status()
-        return self.resource_class.load(response.Location, type=self._type, session=self._session)
+        return self.resource_class.load(response.headers['Location'], type=self._type, session=self._session)
