@@ -203,3 +203,24 @@ class TestResources(TestCase):
         resource_data.pop('supplier_name')
         resource_data.pop('address')
         self.assertEqual(resource_data, charge_account.resource_data)
+
+    def test_delete_should_delete_the_resource(self):
+        with vcr.use_cassette('tests/cassettes/charge_account/to_be_deleted'):
+            charge_account = self.resource.charge_accounts.create(**{
+                'bank': '237',
+                'name': 'Charge Account to be deleted',
+                'agreement_code': '1444',
+                'portfolio_code': '12',
+                'agency': {'number': 453, 'digit': ''},
+                'account': {'number': 1633, 'digit': '1'},
+                'national_identifier': '86271628000147',
+            })
+
+        uuid = charge_account.uuid
+
+        with vcr.use_cassette('tests/cassettes/charge_account/delete'):
+            charge_account.delete()
+
+            with self.assertRaises(requests.HTTPError):
+                self.resource.charge_accounts.get(uuid)
+

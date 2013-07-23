@@ -103,18 +103,20 @@ class Resource(object):
         return self
 
     def delete(self):
-        response = self._session.delete(self.url)
-        response.raise_for_status()
-        # Checks status_code == 204
-
-    def reload(self):
-        response = self.session.get(self.url).json()
+        headers = {}
+        if self.resource_data.has_key('etag'):
+            headers.update({'If-Match': self.etag})
+        response = self._session.delete(self.url, headers=headers)
         response.raise_for_status()
 
-        self.resource_data = response.json()
-        self._links=response.links
+    #def reload(self):
+    #    response = self.session.get(self.url).json()
+    #    response.raise_for_status()
 
-        return self
+    #    self.resource_data = response.json()
+    #    self._links=response.links
+
+    #    return self
 
 
 class Collection(object):

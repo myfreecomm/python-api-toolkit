@@ -1,0 +1,72 @@
+- request:
+    body: '{"account": {"digit": "1", "number": 1633}, "name": "Charge Account to
+      be deleted", "portfolio_code": "12", "agency": {"digit": "", "number": 453},
+      "national_identifier": "86271628000147", "bank": "237", "agreement_code": "1444"}'
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, !!python/unicode '229']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: POST
+    url: /charge-accounts/
+  response:
+    body: {string: CREATED}
+    headers: {content-length: '7', content-type: text/html; charset=utf-8, date: 'Tue,
+        23 Jul 2013 23:35:35 GMT', link: '<http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/>;
+        rel=charge_account, <http://localhost:8000/charge-accounts/>; rel=charge_accounts',
+      location: 'http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 201, message: CREATED}
+- request:
+    body: '{"account": {"digit": "1", "number": 1633}, "name": "Charge Account to
+      be deleted", "portfolio_code": "12", "agency": {"digit": "", "number": 453},
+      "national_identifier": "86271628000147", "bank": "237", "agreement_code": "1444"}'
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, !!python/unicode '229']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: POST
+    url: /charge-accounts/
+  response:
+    body: {string: CREATED}
+    headers: {content-length: '7', content-type: text/html; charset=utf-8, date: 'Tue,
+        23 Jul 2013 23:35:35 GMT', link: '<http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/>;
+        rel=charge_account, <http://localhost:8000/charge-accounts/>; rel=charge_accounts',
+      location: 'http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 201, message: CREATED}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: GET
+    url: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
+  response:
+    body: {string: '{"account": {"digit": "1", "number": 1633}, "agency": {"digit":
+        "", "number": 453}, "name": "Charge Account to be deleted", "etag": "3caaca1c2e7df6b678e16c617598380dc3e834ad",
+        "portfolio_code": "12", "supplier_name": "Gerardon", "uri": "http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1444", "address": "Rua BOLADA", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "976ac42c-4c7a-4dd9-9f10-bc24805dc35f"}'}
+    headers: {content-length: '569', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:35 GMT', etag: '"3caaca1c2e7df6b678e16c617598380dc3e834ad"',
+      link: '<http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/batches/>;
+        rel=batches, <http://localhost:8000/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/invoices/>;
+        rel=invoices', server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
