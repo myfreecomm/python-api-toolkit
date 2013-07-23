@@ -18,28 +18,39 @@ class TestResourceLoad(TestCase):
     def setUp(self):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
 
-        with vcr.use_cassette('tests/cassettes/domain'):
-            self.resource = Resource.load(
+
+    def test_should_load_resource_informations_on_load(self):
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
                 password = TEST_API['PASSWORD'],
             )
 
-    def test_should_load_resource_informations_on_load(self):
-        with vcr.use_cassette('tests/cassettes/domain'):
             response = requests.get(
                 url = TEST_API['ENTRYPOINT'],
                 auth = ('', TEST_API['PASSWORD']),
-                headers = {'accept': 'application/json'},
+                headers = {
+                    'accept': 'application/json',
+                    'Content-Length': '0',
+                    'Content-Type': 'application/json',
+                }
             )
 
 
-        self.assertEqual(self.resource.resource_data, response.json())
+        self.assertEqual(resource.resource_data, response.json())
 
     def test_should_have_a_valid_session_on_load(self):
-        self.assertTrue(hasattr(self.resource, '_session'))
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
 
-        session = self.resource._session
+        self.assertTrue(hasattr(resource, '_session'))
+
+        session = resource._session
 
         self.assertEqual(session.auth, (TEST_API['USER'], TEST_API['PASSWORD']))
         self.assertEqual(session.headers['Accept'], 'application/json')
@@ -47,7 +58,13 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['Content-Length'], '0')
 
     def test_should_create_collections_with_links(self):
-        with vcr.use_cassette('tests/cassettes/domain'):
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
             response = requests.get(
                 url = TEST_API['ENTRYPOINT'],
                 auth = ('', TEST_API['PASSWORD']),
@@ -55,14 +72,21 @@ class TestResourceLoad(TestCase):
             )
 
         for item in response.links.keys():
-            self.assertTrue(hasattr(self.resource, item))
-            self.assertIsInstance(getattr(self.resource, item), Collection)
-            self.assertEqual(getattr(self.resource, item).url, response.links[item]['url'])
+            self.assertTrue(hasattr(resource, item))
+            self.assertIsInstance(getattr(resource, item), Collection)
+            self.assertEqual(getattr(resource, item).url, response.links[item]['url'])
 
     def test_created_collections_should_have_a_valid_session(self):
-        self.assertTrue(hasattr(self.resource, '_session'))
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
 
-        session = self.resource.charge_accounts._session
+        self.assertTrue(hasattr(resource, '_session'))
+
+        session = resource.charge_accounts._session
 
         self.assertEqual(session.auth, (TEST_API['USER'], TEST_API['PASSWORD']))
         self.assertEqual(session.headers['Accept'], 'application/json')
@@ -70,7 +94,7 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['Content-Length'], '0')
 
     def test_should_raise_404_if_wrong_url(self):
-        with vcr.use_cassette('tests/cassettes/wrong_domain'):
+        with vcr.use_cassette('tests/cassettes/domain/wrong'):
             with self.assertRaises(requests.HTTPError):
                 Resource.load(
                     url = 'http://localhost:8000/api/',

@@ -8,7 +8,7 @@
         content-length: !!python/tuple [Content-Length, '0']
         content-type: !!python/tuple [Content-Type, application/json]
         user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-48-generic]
+            Linux/3.2.0-49-generic]
     method: GET
     url: /api/
   response:
@@ -22,6 +22,6 @@
         manually please check your spelling and try again.</p>
 
         '}
-    headers: {content-length: '233', content-type: text/html, date: 'Thu, 18 Jul 2013
-        21:51:36 GMT', server: Werkzeug/0.9.1 Python/2.7.3}
+    headers: {content-length: '233', content-type: text/html, date: 'Tue, 23 Jul 2013
+        23:35:35 GMT', server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 404, message: NOT FOUND}
