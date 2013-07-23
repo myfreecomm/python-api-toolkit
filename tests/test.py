@@ -172,3 +172,34 @@ class TestResourceCollections(TestCase):
 
         self.assertEqual(charge_account._session, self.resource.charge_accounts._session)
 
+
+class TestResources(TestCase):
+
+    def setUp(self):
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            self.resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
+
+    def test_save_should_patch_the_resource(self):
+        with vcr.use_cassette('tests/cassettes/charge_account/save'):
+            charge_account = list(self.resource.charge_accounts.all())[-1]
+
+            resource_data = charge_account.resource_data
+
+            charge_account.supplier_name = 'Rubia'
+            charge_account.address = 'Rua do BUSTV'
+            charge_account.save()
+
+            charge_account = self.resource.charge_accounts.get(charge_account.uuid)
+
+        self.assertNotEqual(resource_data.pop('etag'), charge_account.resource_data.pop('etag'))
+        self.assertEqual(charge_account.resource_data.pop('supplier_name'), 'Rubia')
+        self.assertEqual(charge_account.resource_data.pop('address'), 'Rua do BUSTV')
+
+        resource_data.pop('supplier_name')
+        resource_data.pop('address')
+        self.assertEqual(resource_data, charge_account.resource_data)

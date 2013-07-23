@@ -80,11 +80,21 @@ class Resource(object):
             setattr(self, link_name, link_collection)
 
     def save(self):
-        response = self._session.put(
+        dumped_data = json.dumps(self.resource_data)
+        headers = {
+            'Content-Length': str(len(dumped_data))
+        }
+        if self.resource_data.has_key('etag'):
+            headers.update({'If-Match': self.etag})
+
+        response = self._session.patch(
             self.url,
-            data=json.dumps(self.resource_data),
-            headers={'Content-Length': str(len(dumped_data))}
+            data=dumped_data,
+            headers=headers,
         )
+        response.raise_for_status()
+
+        response = self._session.get(self.url)
         response.raise_for_status()
 
         self.resource_data = response.json()
