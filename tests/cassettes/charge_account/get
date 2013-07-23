@@ -1,0 +1,88 @@
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: GET
+    url: /charge-accounts/
+  response:
+    body: {string: '[{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "45c22499e98ddb438ef50ddae85fe1cd44bfab05",
+        "portfolio_code": "11", "supplier_name": "Gerardon", "uri": "http://localhost:8000/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua BOLADA", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "d69a42d5-90e0-4fca-a244-6c8f01bae477"},
+        {"account": {"digit": "6", "number": 1432}, "agency": {"digit": "", "number":
+        412}, "name": "Bradesco charge_account", "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
+        "portfolio_code": "11", "supplier_name": "Aimee", "uri": "http://localhost:8000/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua do Carmo", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}]'}
+    headers: {content-length: '1131', content-type: application/json, date: 'Tue,
+        23 Jul 2013 23:35:34 GMT', link: '<http://localhost:8000/charge-accounts/banks/>;
+        rel=banks, <http://localhost:8000/charge-accounts/currencies/>; rel=currencies',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: GET
+    url: /charge-accounts/
+  response:
+    body: {string: '[{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "45c22499e98ddb438ef50ddae85fe1cd44bfab05",
+        "portfolio_code": "11", "supplier_name": "Gerardon", "uri": "http://localhost:8000/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua BOLADA", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "d69a42d5-90e0-4fca-a244-6c8f01bae477"},
+        {"account": {"digit": "6", "number": 1432}, "agency": {"digit": "", "number":
+        412}, "name": "Bradesco charge_account", "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
+        "portfolio_code": "11", "supplier_name": "Aimee", "uri": "http://localhost:8000/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua do Carmo", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}]'}
+    headers: {content-length: '1131', content-type: application/json, date: 'Tue,
+        23 Jul 2013 23:35:34 GMT', link: '<http://localhost:8000/charge-accounts/banks/>;
+        rel=banks, <http://localhost:8000/charge-accounts/currencies/>; rel=currencies',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
+            Linux/3.2.0-49-generic]
+    method: GET
+    url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
+  response:
+    body: {string: '{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
+        "portfolio_code": "11", "supplier_name": "Aimee", "uri": "http://localhost:8000/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua do Carmo", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}'}
+    headers: {content-length: '563', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:34 GMT', etag: '"697525700407ac2f90ce38a10b6462fe39ca65e7"',
+      link: '<http://localhost:8000/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/batches/>;
+        rel=batches, <http://localhost:8000/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/invoices/>;
+        rel=invoices', server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}

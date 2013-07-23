@@ -123,3 +123,14 @@ class TestResourceCollections(TestCase):
         for item in charge_accounts:
             self.assertEqual(item._type, self.resource.charge_accounts._type)
             self.assertTrue(hasattr(item, TEST_API['URL_ATTRIBUTE_NAME']))
+
+    def test_get_should_return_one_charge_account(self):
+        with vcr.use_cassette('tests/cassettes/charge_account/get'):
+            charge_account = list(self.resource.charge_accounts.all())[-1]
+
+            charge_account = self.resource.charge_accounts.get(charge_account.uuid)
+
+        self.assertEqual(charge_account._type, self.resource.charge_accounts._type)
+        self.assertTrue(hasattr(charge_account, TEST_API['URL_ATTRIBUTE_NAME']))
+        self.assertTrue(hasattr(charge_account, 'resource_data'))
+
