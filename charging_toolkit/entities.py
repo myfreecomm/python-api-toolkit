@@ -109,15 +109,6 @@ class Resource(object):
         response = self._session.delete(self.url, headers=headers)
         response.raise_for_status()
 
-    #def reload(self):
-    #    response = self.session.get(self.url).json()
-    #    response.raise_for_status()
-
-    #    self.resource_data = response.json()
-    #    self._links=response.links
-
-    #    return self
-
 
 class Collection(object):
     url = None
@@ -176,3 +167,4 @@ class Collection(object):
 
         response.raise_for_status()
         return self.resource_class.load(response.headers['Location'], type=self._type, session=self._session)
+
