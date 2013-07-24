@@ -8,7 +8,10 @@ __all__ = ['Resource', 'Collection']
 class Resource(object):
     url_attribute_name = 'url'
     _session = None
+    _type = 'entrypoint'
 
+    def __repr__(self):
+        return '<api_toolkit.Resource type="%s">' % self._type
 
     def __init__(self, data, type=None, links={}, session=None):
         self.resource_data = data
@@ -114,6 +117,10 @@ class Collection(object):
     url = None
     resource_class = Resource
     _session = None
+    _type = 'entrypoint'
+
+    def __repr__(self):
+        return '<api_toolkit.Collection type="%s">' % self._type
 
     def __init__(self, url, type, **kwargs):
         self.url = url
