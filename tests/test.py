@@ -2,7 +2,7 @@ from unittest import TestCase
 import vcr
 import requests
 
-from charging_toolkit import Resource, Collection
+from api_toolkit import Resource, Collection
 
 TEST_API = {
     'ENTRYPOINT': 'http://localhost:8000/domain/',
