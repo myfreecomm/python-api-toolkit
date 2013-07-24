@@ -232,3 +232,44 @@ class TestResources(TestCase):
             with self.assertRaises(requests.HTTPError):
                 self.resource.charge_accounts.get(uuid)
 
+    def test_setattr_should_update_resource_data_if_it_is_the_same_key(self):
+        resource = Resource({
+            'first': 'first_value',
+            'second': 'second_value',
+        })
+
+        resource.first = 'new_value'
+
+        with self.assertRaises(AttributeError):
+            object.__getattribute__(resource, 'first')
+
+        self.assertTrue(resource.resource_data.has_key('first'))
+        self.assertEqual(resource.resource_data['first'], 'new_value')
+
+    def test_setattr_should_not_update_resource_data_if_the_key_is_not_present(self):
+        resource = Resource({
+            'first': 'first_value',
+            'second': 'second_value',
+        })
+
+        resource.third = 'new_value'
+
+        third = object.__getattribute__(resource, 'third')
+
+        self.assertFalse(resource.resource_data.has_key('third'))
+        self.assertEqual(third, 'new_value')
+
+    def test_setattr_should_not_set_collections_at_resource_data(self):
+        resource = Resource({
+            'first': 'first_value',
+            'second': 'second_value',
+        })
+
+        col = Collection('http://dummyurl.com/', 'type')
+        resource.first = col
+
+        first = object.__getattribute__(resource, 'first')
+
+        self.assertTrue(resource.resource_data.has_key('first'))
+        self.assertEqual(resource.resource_data['first'], 'first_value')
+        self.assertEqual(first, col)
