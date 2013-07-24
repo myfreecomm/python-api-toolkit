@@ -273,3 +273,15 @@ class TestResources(TestCase):
         self.assertTrue(resource.resource_data.has_key('first'))
         self.assertEqual(resource.resource_data['first'], 'first_value')
         self.assertEqual(first, col)
+
+    def test_getattr_should_prioritize_instance_attributes(self):
+        resource = Resource({
+            'first': 'first_value',
+        })
+
+        resource.second = 'instance_value'
+        resource.resource_data.update({'second': 'dict_value'})
+
+        self.assertEqual(resource.second, 'instance_value')
+        self.assertEqual(resource.resource_data['second'], 'dict_value')
+        self.assertEqual(object.__getattribute__(resource, 'second'), 'instance_value')
