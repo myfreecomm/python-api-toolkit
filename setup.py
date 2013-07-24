@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-setup(name='charging_toolkit',
+setup(name='api_toolkit',
       version='0.1',
-      packages=['hammock'],
+      packages=['requests', 'vcrpy'],
      )
