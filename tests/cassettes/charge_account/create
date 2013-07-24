@@ -22,29 +22,6 @@
       server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 201, message: CREATED}
 - request:
-    body: '{"account": {"digit": "6", "number": 1432}, "name": "Bradesco charge_account",
-      "portfolio_code": "11", "agency": {"digit": "", "number": 412}, "national_identifier":
-      "86271628000147", "bank": "237", "agreement_code": "1234"}'
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, !!python/unicode '224']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-49-generic]
-    method: POST
-    url: /charge-accounts/
-  response:
-    body: {string: CREATED}
-    headers: {content-length: '7', content-type: text/html; charset=utf-8, date: 'Tue,
-        23 Jul 2013 23:35:34 GMT', link: '<http://localhost:8000/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/>;
-        rel=charge_account, <http://localhost:8000/charge-accounts/>; rel=charge_accounts',
-      location: 'http://localhost:8000/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/',
-      server: Werkzeug/0.9.1 Python/2.7.3}
-    status: {code: 201, message: CREATED}
-- request:
     body: null
     headers: !!python/object:requests.structures.CaseInsensitiveDict
       _store:
