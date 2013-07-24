@@ -176,6 +176,9 @@ class TestResourceCollections(TestCase):
 class TestResources(TestCase):
 
     def setUp(self):
+        Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
+
+    def test_save_should_patch_the_resource(self):
         with vcr.use_cassette('tests/cassettes/domain/load'):
             self.resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
@@ -183,8 +186,6 @@ class TestResources(TestCase):
                 password = TEST_API['PASSWORD'],
             )
 
-
-    def test_save_should_patch_the_resource(self):
         with vcr.use_cassette('tests/cassettes/charge_account/save'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
 
@@ -205,6 +206,13 @@ class TestResources(TestCase):
         self.assertEqual(resource_data, charge_account.resource_data)
 
     def test_delete_should_delete_the_resource(self):
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            self.resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
         with vcr.use_cassette('tests/cassettes/charge_account/to_be_deleted'):
             charge_account = self.resource.charge_accounts.create(**{
                 'bank': '237',
