@@ -137,3 +137,46 @@ Loaded resources also have their collections instantiated as attributes. To get 
 ```
 
 ### Collection
+Collections are the Resource managers. At collections you can list all Resources from that type, get a specific Resource from that type, create a new Resource or maybe delete all Resources from that type.
+
+You can use ``all()`` to get all resources from the same type. For instance:
+```python
+    >>> # We're still utilizing the resource we defined earlier.
+    >>> res.tasks
+    <api_toolkit.Collection type="tasks">
+    >>> list(res.tasks.all())
+    [<api_toolkit.Resource type="tasks">, <api_toolkit.Resource type="tasks">]
+    >>> # Note that all() returns a generator.
+    >>> for resource in res.tasks.all()
+    ...     print resource.url
+    'http://example.com/api/users/tasks/1/'
+    'http://example.com/api/users/tasks/2/'
+```
+
+To get a specific resource you can use ``get()``. ``get()`` takes the resource identifier as an argument (In 'http://example.com/api/users/tasks/1/' the identifier is '1'.
+```python
+    >>> first_resource = res.tasks.get('1')
+    >>> first_resource.url
+    'http://example.com/api/users/tasks/1/'
+```
+
+To create a new resource all you have to do is provide enough arguments to ``create()``. For example:
+```python
+    >>> new_resource = res.tasks.create(
+    ...     description = 'Test task to be created.',
+    ...     due_date = '07/10',
+    ...     name = 'Task#01'
+    ... )
+```
+
+And now, if we want to delete everything from the collection, we just call ``delete()``. TO BE IMPLEMENTED
+```python
+    >>> res.tasks.delete()
+    >>> list(res.tasks.all())
+    []
+    >>> # Everything gone! Let's just save that resource we just created again...
+    >>> new_resource.save()
+    >>> list(res.tasks.all())
+    [<api_toolkit.Resource type="tasks">]
+```
+
