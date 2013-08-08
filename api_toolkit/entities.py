@@ -47,6 +47,7 @@ class Resource(object):
             links=response.links,
             session=session,
         )
+        instance.url = url
         return instance
 
     def __setattr__(self, name, value):
@@ -145,9 +146,8 @@ class Collection(object):
             response = self._session.get(url)
             for item in response.json():
                 instance = self.resource_class(
-                    data=item, type=self._type
+                    data=item, type=self._type, session=self._session
                 )
-                instance._session = self._session
                 yield instance
 
             if not response.links.has_key('next'):
