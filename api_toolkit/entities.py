@@ -48,6 +48,9 @@ class Resource(object):
             session=session,
         )
         instance.url = url
+
+        instance._response = response
+
         return instance
 
     def __setattr__(self, name, value):
@@ -72,6 +75,10 @@ class Resource(object):
     @url.setter
     def url(self, value):
         self.resource_data[self.url_attribute_name] = value
+
+    @property
+    def etag(self):
+        return self.resource_data.get('etag') or self._response.get('etag')
 
     def prepare_collections(self):
         for item in self._links.values():
@@ -108,7 +115,7 @@ class Resource(object):
 
     def delete(self):
         headers = {}
-        if self.resource_data.has_key('etag'):
+        if self.etag:
             headers.update({'If-Match': self.etag})
         response = self._session.delete(self.url, headers=headers)
         response.raise_for_status()

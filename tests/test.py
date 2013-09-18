@@ -37,7 +37,6 @@ class TestResourceLoad(TestCase):
                 }
             )
 
-
         self.assertEqual(resource.resource_data, response.json())
 
     def test_should_have_a_valid_session_on_load(self):
@@ -56,6 +55,17 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['Accept'], 'application/json')
         self.assertEqual(session.headers['Content-Type'], 'application/json')
         self.assertEqual(session.headers['Content-Length'], '0')
+
+    def test_should_put_response_in_the_resource(self):
+        with vcr.use_cassette('tests/cassettes/domain/load'):
+            resource = Resource.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
+        self.assertTrue(hasattr(resource, '_response'))
+        self.assertTrue(isinstance(resource._response, requests.Response))
 
     def test_should_create_collections_with_links(self):
         with vcr.use_cassette('tests/cassettes/domain/load'):
