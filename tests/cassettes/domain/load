@@ -12,7 +12,7 @@
     method: GET
     url: /domain/
   response:
-    body: {string: '{"description": null, "uri": "http://localhost:8000/account/domains/b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388/",
+    body: {string: '{"description": null, "uri": "http://localhost:8000/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
@@ -33,7 +33,7 @@
     method: GET
     url: /domain/
   response:
-    body: {string: '{"description": null, "uri": "http://localhost:8000/account/domains/b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388/",
+    body: {string: '{"description": null, "uri": "http://localhost:8000/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "f1750ae268cb76eaa37eeec8f42290b0da46c042",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
