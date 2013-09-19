@@ -36,6 +36,7 @@ class Resource(object):
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Content-Length': '0',
+                'User-Agent': 'api_toolkit',
             })
 
         response = session.get(url)
@@ -145,6 +146,7 @@ class Collection(object):
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Content-Length': '0',
+                'User-Agent': 'api_toolkit',
             })
 
     def all(self):

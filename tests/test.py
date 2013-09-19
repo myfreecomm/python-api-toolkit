@@ -31,9 +31,10 @@ class TestResourceLoad(TestCase):
                 url = TEST_API['ENTRYPOINT'],
                 auth = ('', TEST_API['PASSWORD']),
                 headers = {
-                    'accept': 'application/json',
+                    'Accept': 'application/json',
                     'Content-Length': '0',
                     'Content-Type': 'application/json',
+                    'User-Agent': 'api_toolkit',
                 }
             )
 
@@ -55,6 +56,7 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['Accept'], 'application/json')
         self.assertEqual(session.headers['Content-Type'], 'application/json')
         self.assertEqual(session.headers['Content-Length'], '0')
+        self.assertEqual(session.headers['User-Agent'], 'api_toolkit')
 
     def test_should_put_response_in_the_resource(self):
         with vcr.use_cassette('tests/cassettes/domain/load'):
@@ -78,7 +80,10 @@ class TestResourceLoad(TestCase):
             response = requests.get(
                 url = TEST_API['ENTRYPOINT'],
                 auth = ('', TEST_API['PASSWORD']),
-                headers = {'accept': 'application/json'},
+                headers = {
+                    'Accept': 'application/json',
+                    'User-Agent': 'api_toolkit',
+                },
             )
 
         for item in response.links.keys():

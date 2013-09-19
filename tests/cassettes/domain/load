@@ -7,8 +7,7 @@
         authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
         content-length: !!python/tuple [Content-Length, '0']
         content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-49-generic]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
     method: GET
     url: /domain/
   response:
@@ -28,8 +27,7 @@
         accept: !!python/tuple [accept, application/json]
         accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
         authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-49-generic]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
     method: GET
     url: /domain/
   response:

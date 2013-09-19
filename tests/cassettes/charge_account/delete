@@ -8,8 +8,7 @@
         content-length: !!python/tuple [Content-Length, '0']
         content-type: !!python/tuple [Content-Type, application/json]
         if-match: !!python/tuple [If-Match, !!python/unicode '3caaca1c2e7df6b678e16c617598380dc3e834ad']
-        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-49-generic]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
     method: DELETE
     url: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
   response:
@@ -28,8 +27,7 @@
         authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
         content-length: !!python/tuple [Content-Length, '0']
         content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, python-requests/1.2.3 CPython/2.7.3
-            Linux/3.2.0-49-generic]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
     method: GET
     url: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
   response:
