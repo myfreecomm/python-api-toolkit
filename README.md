@@ -22,7 +22,7 @@ For example, using [Charging](https://github.com/myfreecomm/charging) with Pytho
      u'description': None,
      u'etag': u'da39a3ee5e6b4b0d3255bfef95601890afd80709',
      u'supplier_name': u'Gerardo Soares',
-     u'token: u'9kpJCaG/Qsui+G3s+0QcKA==',
+     u'token': u'9kpJCaG/Qsui+G3s+0QcKA==',
      u'uri': u'http://sandbox.charging.financeconnect.com.br/account/domains/513e8442-0a4e-404c-b405-8681ca7e58b1/',
      u'uuid': u'513e8442-0a4e-404c-b405-8681ca7e58b1',
      u'zipcode': u'24020040'}
