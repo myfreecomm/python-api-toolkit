@@ -128,7 +128,7 @@ class Resource(object):
         return self
 
     def delete(self):
-        if 'PUT' not in self._allowed_methods:
+        if 'DELETE' not in self._allowed_methods:
             raise ValueError("This resource can't be deleted.")
 
         headers = {}
