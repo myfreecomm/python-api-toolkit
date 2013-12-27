@@ -7,9 +7,27 @@ __all__ = ['Resource', 'Collection']
 ALL_METHODS = 'HEAD, OPTIONS, GET, PUT, POST, DELETE'
 
 
+class SessionFactory(object):
+    default_headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Content-Length': '0',
+        'User-Agent': 'api_toolkit',
+    }
+
+    @classmethod
+    def make(cls, user, password):
+        session = requests.Session()
+        session.auth = (user, password)
+        session.headers.update(cls.default_headers)
+
+        return session
+
+
 class Resource(object):
     url_attribute_name = 'url'
     _session = None
+    session_factory = SessionFactory
 
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
@@ -30,14 +48,7 @@ class Resource(object):
             user = kwargs.get('user', '')
             password = kwargs.get('password', '')
 
-            session = requests.Session()
-            session.auth = (user, password)
-            session.headers.update({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Content-Length': '0',
-                'User-Agent': 'api_toolkit',
-            })
+            session = cls.session_factory.make(user, password)
 
         response = session.get(url)
         response.raise_for_status()
@@ -128,6 +139,7 @@ class Resource(object):
 
 
 class Collection(object):
+    session_factory = SessionFactory
 
     def __repr__(self):
         return '<api_toolkit.Collection type="%s">' % self.__class__
@@ -141,14 +153,7 @@ class Collection(object):
             user = kwargs.get('user', '')
             password = kwargs.get('password', '')
 
-            self._session = requests.Session()
-            self._session.auth = (user, password)
-            self._session.headers.update({
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Content-Length': '0',
-                'User-Agent': 'api_toolkit',
-            })
+            self._session = self.session_factory.make(user, password)
 
         self._allowed_methods = self.discover_allowed_methods()
 
