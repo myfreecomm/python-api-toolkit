@@ -280,7 +280,7 @@ class TestResources(TestCase):
             'second': 'second_value',
         })
 
-        col = Collection('http://dummyurl.com/', 'type')
+        col = Collection('http://dummyurl.com/', type='type')
         resource.first = col
 
         first = object.__getattribute__(resource, 'first')

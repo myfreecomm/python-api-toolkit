@@ -8,22 +8,20 @@ __all__ = ['Resource', 'Collection']
 class Resource(object):
     url_attribute_name = 'url'
     _session = None
-    _type = 'entrypoint'
 
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self._type
 
-    def __init__(self, data, type=None, links={}, session=None):
+    def __init__(self, data, **kwargs):
         self.resource_data = data
-        self._links = links
-        self._type = type
-        self._session = self._session or session
+        self._links = kwargs.get('links', {})
+        self._type = kwargs.get('type', None)
+        self._session = kwargs.get('session', self._session)
 
         self.prepare_collections()
 
     @classmethod
     def load(cls, url, **kwargs):
-        type = kwargs.get('type')
         session = kwargs.get('session')
 
         if session is None:
@@ -44,7 +42,7 @@ class Resource(object):
 
         instance = cls(
             data=response.json(),
-            type=type,
+            type=kwargs.get('type'),
             links=response.links,
             session=session,
         )
@@ -131,9 +129,9 @@ class Collection(object):
     def __repr__(self):
         return '<api_toolkit.Collection type="%s">' % self._type
 
-    def __init__(self, url, type, **kwargs):
+    def __init__(self, url, **kwargs):
         self.url = url
-        self._type = type
+        self._type = kwargs.get('type')
         self._session = kwargs.get('session')
 
         if self._session is None:
