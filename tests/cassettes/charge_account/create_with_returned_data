@@ -25,3 +25,177 @@
         rel=batches, <http://localhost:8000/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/>;
         rel=invoices', server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 201, message: CREATED}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: HEAD
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
+  response:
+    body: {string: ''}
+    headers: {content-encoding: gzip, content-length: '1152', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:54:58 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: HEAD
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
+  response:
+    body: {string: ''}
+    headers: {content-encoding: gzip, content-length: '1152', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:54:58 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: HEAD
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/batches/
+  response:
+    body: {string: ''}
+    headers: {content-encoding: gzip, content-length: '1151', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:54:58 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: OPTIONS
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
+  response:
+    body:
+      string: !!binary |
+        H4sIAMjpvVIC/+1YbW/bNhD+nl9xc7amLSJLzlw3lWUXW5JtBbYkyNIBxbAVtHiyuEqkRtJOnGL/
+        fUeJUuyk+VAUMTBgDmBT4t1zLzqenstO8tXx2dHlu/MTyG1ZTHcS9wMFk/NJD2XP3UDGpzsASYmW
+        kZStAvx7IZaTXqqkRWkDu6qwB/5q0rN4bUMHM4Y0Z9qgnSxsFhz2ahQrbIHTczZHkMpCphaSA7MQ
+        Otk5BixN6ZY1IR+9YsMD/iJ4FWEUDLOUBexgOAxG6WEWDWYMhy9fhkIulUjRhEnYAHeOSlbipKfV
+        TFmz5tzp2enJ/unZdxdHP7357aRxydhVgeCi8M6nxtQ7UCcFnsNHqBjnQs7jaAwl+SmkW/1Ty8wU
+        X23IDKLqGg7o647EHZy1vY+UB2ljU7KiAMOkCQxqkY1hxtIPc+1yFO8i4rrSlIslKc6U5qgDCtOq
+        Mh6QZaMKwWGXc96K5wNvIbhCMc9tLJUmU20orXJ/iOWaiqmYbPWMuMF4FH1Dj1QVSse7o9Fo/EnI
+        Rt2yGaW09Y42JfnuXSWEglUGY2hXY7gS3OaUOGfBI/B9sDlBLFFbkbIiYIWYy9iqatxl8YDC/fY2
+        z7W8hzpwsbin6fW083LTfY8S1Ftx/8Vt9LtCZsq5v5b+bOT+NiVUQUK+HiByCDC8i0IyhWjzmLFS
+        FKsYSiUV5TftnuiuWZQEtNo0CrtZlnYieF3RwWRWKHnHt7o0NisBXBE2eXfqSVhXOZ3nsDnQSV1D
+        bsfVkeCTnvfAV36SD+6e0sRVxPTpMBo+Izi3JrCBF2+eeFowYyY9dwI9jtvS7dJd5NML6h9oLPyC
+        Nlc8pqObrwvw6dn55Zuz019pg3cg4S3Kg4BvL37eQHNYrmHFYVgoKqFcGRsfRlH05c3mE47RyuWg
+        zmlISd1IrisFn5FWsWoh3hqqQipedAFQp8qAYyYkchASklRxnC50YZKwXu57reO/qEkrsFqQICmb
+        Wp2K2lrU0uw7ZZsLA80R7NztzCaquE1jt6D7hZiuXW7sNZ8/v7536/e63+4JyfF674+H1JNwHfvz
+        bBo10xg+aLnefhzLlM9Smfcc31NXXopUPezFPdHH8air23tb/1v7T1irqE1e0cHcjlnFFjYPB/1o
+        O+aMUdsxJNlyxvR2bN0gtTbzYTvGKq0yUeCWsqisyIhhOV6xrXPASyG3aYpVVbHdEJWeMylutmnS
+        DTkstfeN+ZcTyiUWqsLACz7Ou0kTE8s0GaT+tqXjYiylOQ2fvj5/UtgxMaD8ydyO+8+f3X9Pf5b5
+        JLylSETXLomhpQutaZB0VGvfc7Mv5ZINqwMuuNyzNE3YNAcmV6Cyhtb1O8620zHLnTVquTYWtNy9
+        43jv1GJPIxjEhmISHUStlYYZpmxBlHGlFpCzJfpYjk++f/sjTOBSL9B7RjzSg5GsbmknTfWWIA24
+        PtWHo5zu0gyd0yRvlQf7gRUGu/gYTRCNsoe7EjTscmHI+xUwoIcoOdMcaL4gFjvHfhNLE7yPOwmb
+        sSUJm39X/AtHdIRvwBAAAA==
+    headers: {content-encoding: gzip, content-length: '1156', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:57:44 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: OPTIONS
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
+  response:
+    body:
+      string: !!binary |
+        H4sIAMjpvVIC/+1YbW/bNhD+nl9xc7amLSJLzlw3lWUXW5JtBbYkyNIBxbAVtHiyuEqkRtJOnGL/
+        fUeJUuyk+VAUMTBgDmBT4t1zLzqenstO8tXx2dHlu/MTyG1ZTHcS9wMFk/NJD2XP3UDGpzsASYmW
+        kZStAvx7IZaTXqqkRWkDu6qwB/5q0rN4bUMHM4Y0Z9qgnSxsFhz2ahQrbIHTczZHkMpCphaSA7MQ
+        Otk5BixN6ZY1IR+9YsMD/iJ4FWEUDLOUBexgOAxG6WEWDWYMhy9fhkIulUjRhEnYAHeOSlbipKfV
+        TFmz5tzp2enJ/unZdxdHP7357aRxydhVgeCi8M6nxtQ7UCcFnsNHqBjnQs7jaAwl+SmkW/1Ty8wU
+        X23IDKLqGg7o647EHZy1vY+UB2ljU7KiAMOkCQxqkY1hxtIPc+1yFO8i4rrSlIslKc6U5qgDCtOq
+        Mh6QZaMKwWGXc96K5wNvIbhCMc9tLJUmU20orXJ/iOWaiqmYbPWMuMF4FH1Dj1QVSse7o9Fo/EnI
+        Rt2yGaW09Y42JfnuXSWEglUGY2hXY7gS3OaUOGfBI/B9sDlBLFFbkbIiYIWYy9iqatxl8YDC/fY2
+        z7W8hzpwsbin6fW083LTfY8S1Ftx/8Vt9LtCZsq5v5b+bOT+NiVUQUK+HiByCDC8i0IyhWjzmLFS
+        FKsYSiUV5TftnuiuWZQEtNo0CrtZlnYieF3RwWRWKHnHt7o0NisBXBE2eXfqSVhXOZ3nsDnQSV1D
+        bsfVkeCTnvfAV36SD+6e0sRVxPTpMBo+Izi3JrCBF2+eeFowYyY9dwI9jtvS7dJd5NML6h9oLPyC
+        Nlc8pqObrwvw6dn55Zuz019pg3cg4S3Kg4BvL37eQHNYrmHFYVgoKqFcGRsfRlH05c3mE47RyuWg
+        zmlISd1IrisFn5FWsWoh3hqqQipedAFQp8qAYyYkchASklRxnC50YZKwXu57reO/qEkrsFqQICmb
+        Wp2K2lrU0uw7ZZsLA80R7NztzCaquE1jt6D7hZiuXW7sNZ8/v7536/e63+4JyfF674+H1JNwHfvz
+        bBo10xg+aLnefhzLlM9Smfcc31NXXopUPezFPdHH8air23tb/1v7T1irqE1e0cHcjlnFFjYPB/1o
+        O+aMUdsxJNlyxvR2bN0gtTbzYTvGKq0yUeCWsqisyIhhOV6xrXPASyG3aYpVVbHdEJWeMylutmnS
+        DTkstfeN+ZcTyiUWqsLACz7Ou0kTE8s0GaT+tqXjYiylOQ2fvj5/UtgxMaD8ydyO+8+f3X9Pf5b5
+        JLylSETXLomhpQutaZB0VGvfc7Mv5ZINqwMuuNyzNE3YNAcmV6Cyhtb1O8620zHLnTVquTYWtNy9
+        43jv1GJPIxjEhmISHUStlYYZpmxBlHGlFpCzJfpYjk++f/sjTOBSL9B7RjzSg5GsbmknTfWWIA24
+        PtWHo5zu0gyd0yRvlQf7gRUGu/gYTRCNsoe7EjTscmHI+xUwoIcoOdMcaL4gFjvHfhNLE7yPOwmb
+        sSUJm39X/AtHdIRvwBAAAA==
+    headers: {content-encoding: gzip, content-length: '1156', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:57:44 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: OPTIONS
+    url: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/batches/
+  response:
+    body:
+      string: !!binary |
+        H4sIAMjpvVIC/+1YbW/bNhD+nl9xc7amLSJLzlw3lWUXW5JtBbYkyNIBxbAVtHiyuEqkRtJOnGL/
+        fUeJUuyk+VAUMTBgCRDT5N1zLzqenstO8tXx2dHlu/MTyG1ZTHcS9wEFk/NJD2XPbSDj0x2ApETL
+        SMpWAf69EMtJL1XSorSBXVXYA/9t0rN4bUMHM4Y0Z9qgnSxsFhz2ahQrbIHTczZHkMpCphaSA7MQ
+        Otk5BixNacuakI9eseEBfxG8ijAKhlnKAnYwHAaj9DCLBjOGw5cvwxmzaY4mTMIGt/NTshInPa1m
+        ypo1307PTk/2T8++uzj66c1vJ41Hxq4KBBeE9z01pj6BOifwHD5CxTgXch5HYyjJTSHd6p9aZqb4
+        akNmEFXXcEB/7kjcwVk7+0hpkDY2JSsKMEyawKAW2RhmLP0w1y5F8S4iritNuViS4kxpjjqgMK0q
+        4wFZNqoQHHY55614PvAWgisU89zGUmky1YbSKveHWK6pmIrJVs+IG4xH0Tf0RFWhdLw7Go3Gn4Rs
+        1C2bUUpb7+hQku/eVUIoWGUwhnY1hivBbU6JcxY8At8HmxPEErUVKSsCVoi5jK2qxl0WDyjcb2/z
+        XMt7qAMXi3uaXk87Lzfd9yhBfRT3X9xGvytkppz7a+nPRu53U0IVJOTrASKHAMO7KCRTiDaPGStF
+        sYqhVFJRftPuie6aRUlAq02jsJtlaSeC1xXdS2aFknd8q0tjsxLAFWGTd6eehHWV03UOm/uc1DXk
+        TlwdCT7peQ985Sf54O4lTVxFTJ8Oo+EzgnNrAht48eaJpwUzZtJzN9DjuCPdLt2XfHpB7QONhV/Q
+        5orHdHXzdQE+PTu/fHN2+isd8A4kvEV5EPDtxc8baA7L9as4DAtFJZQrY+PDKIq+uNd8wi9auRTU
+        KQ0ppxu5dZXgE9IqVi3EW0NFSLWLzn9qVBlwzIREDkJCkiqO04UuTBLWy32vdfwXtWgFVgsSJGVT
+        q1NNW4tamn2nbHNhoLmBnbud2UQVt1nsFrRfiOna142z5ufPr+9t/V632z0hOV7v/fGQehKuY3+e
+        TaNmGsMHLdfHj2OZ8lkq857je2rKS5Gqh724J/o4HnVle+/of2v/CWsVdckrupjbMavYwubhoB9t
+        x5wxajuGJFvOmN6OrRuk1mY+bMdYpVUmCtxSFpUVGREsRyu2dQ94KeQ2TbGqKrYbotJzJsXNNk26
+        GYel9r4x/3JCucRCVRh4wcd5N2kiYpkmg9TftnRdjKU0p+HT1+dPCjsmBpQ/mdtx//mz++/pzzKf
+        hLcUiejaJTG0dKE1zZGOau17bvaFVLIhdcAFl3uWZgnaByZXoLKG1fU7yrbTEcudNWa5NhS0zL2j
+        eO/UYk8jGMSGYRIbRK2VhhmmbEGMcaUWkLMl+lCOT75/+yNM4FIv0HtGNNKDkaxuWSeN9JYgDbg2
+        1YejnHZpgs5pjLfKg/3ACoNdfIzmh0bZw10JGnW5MOT9ChjQM5ScaQ40XRCJnWO/iaUJ3sedhM3Q
+        koTN/yr+BQZU9la9EAAA
+    headers: {content-encoding: gzip, content-length: '1155', content-type: text/html,
+      date: 'Fri, 27 Dec 2013 20:57:44 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
+        Python/2.7.6, vary: Accept-Encoding}
+    status: {code: 404, message: NOT FOUND}

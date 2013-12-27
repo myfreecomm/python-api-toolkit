@@ -4,7 +4,7 @@ import requests
 
 __all__ = ['Resource', 'Collection']
 
-SAFE_METHODS = 'HEAD, OPTIONS, GET'
+ALL_METHODS = 'HEAD, OPTIONS, GET, PUT, POST, DELETE'
 
 
 class Resource(object):
@@ -18,7 +18,7 @@ class Resource(object):
         self.resource_data = data
         self._links = kwargs.get('links', {})
         self._session = kwargs.get('session', self._session)
-        self._allowed_methods = kwargs.get('allowed_methods', SAFE_METHODS)
+        self._allowed_methods = kwargs.get('allowed_methods', ALL_METHODS)
 
         self.prepare_collections()
 
@@ -91,6 +91,9 @@ class Resource(object):
             setattr(self, link_name, link_collection)
 
     def save(self):
+        if 'PUT' not in self._allowed_methods:
+            raise ValueError("This resource can't be saved.")
+
         dumped_data = json.dumps(self.resource_data)
         headers = {
             'Content-Length': str(len(dumped_data))
@@ -114,6 +117,9 @@ class Resource(object):
         return self
 
     def delete(self):
+        if 'PUT' not in self._allowed_methods:
+            raise ValueError("This resource can't be deleted.")
+
         headers = {}
         if self.etag:
             headers.update({'If-Match': self.etag})
@@ -144,11 +150,11 @@ class Collection(object):
                 'User-Agent': 'api_toolkit',
             })
 
-            self._allowed_methods = self.discover_allowed_methods()
+        self._allowed_methods = self.discover_allowed_methods()
 
     def discover_allowed_methods(self):
-        response = self._session.head(self.url)
-        return response.headers.get('Allow', SAFE_METHODS)
+        response = self._session.options(self.url)
+        return response.headers.get('Allow', ALL_METHODS)
 
     def all(self):
         if 'GET' not in self._allowed_methods:
