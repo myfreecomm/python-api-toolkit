@@ -193,7 +193,7 @@ class TestResources(TestCase):
     def setUp(self):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
 
-    def test_save_should_patch_the_resource(self):
+    def test_save_should_put_the_resource(self):
         with vcr.use_cassette('tests/cassettes/domain/load'):
             self.resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],

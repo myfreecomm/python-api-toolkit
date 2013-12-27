@@ -45,7 +45,7 @@
         content-type: !!python/tuple [Content-Type, application/json]
         if-match: !!python/tuple [If-Match, !!python/unicode '697525700407ac2f90ce38a10b6462fe39ca65e7']
         user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: PATCH
+    method: PUT
     url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
   response:
     body: {string: ''}

@@ -99,7 +99,7 @@ class Resource(object):
         if self.resource_data.has_key('etag'):
             headers.update({'If-Match': self.etag})
 
-        response = self._session.patch(
+        response = self._session.put(
             self.url,
             data=dumped_data,
             headers=headers,
