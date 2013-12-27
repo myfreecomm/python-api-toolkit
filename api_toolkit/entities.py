@@ -4,6 +4,7 @@ import requests
 
 __all__ = ['Resource', 'Collection']
 
+SAFE_METHODS = ['HEAD', 'OPTIONS', 'GET']
 
 class Resource(object):
     url_attribute_name = 'url'
@@ -16,7 +17,7 @@ class Resource(object):
         self.resource_data = data
         self._links = kwargs.get('links', {})
         self._session = kwargs.get('session', self._session)
-        self._allowed_methods = kwargs.get('allowed_methods', ['HEAD', 'OPTIONS', 'GET', 'PUT'])
+        self._allowed_methods = kwargs.get('allowed_methods', SAFE_METHODS)
 
         self.prepare_collections()
 
@@ -151,7 +152,16 @@ class Collection(object):
                 'User-Agent': 'api_toolkit',
             })
 
+            self._allowed_methods = self.discover_allowed_methods()
+
+    def discover_allowed_methods(self):
+        response = self._session.head(self.url)
+        return response.headers.get('Allow', SAFE_METHODS)
+
     def all(self):
+        if 'GET' not in self._allowed_methods:
+            raise ValueError('This collection is not iterable.')
+
         url = self.url
         while True:
             response = self._session.get(url)
@@ -168,6 +178,9 @@ class Collection(object):
             url = response.links['next']['url']
 
     def get(self, identifier, append_slash=True):
+        if 'GET' not in self._allowed_methods:
+            raise ValueError('This collection cannot be loaded.')
+
         if append_slash:
             url_template = '{0}{1}/'
         else:
@@ -177,6 +190,9 @@ class Collection(object):
         return self.resource_class.load(url, session=self._session)
 
     def create(self, **kwargs):
+        if 'POST' not in self._allowed_methods:
+            raise ValueError('No items can be created for this collection.')
+
         resource_data = json.dumps(kwargs)
         response = self._session.post(
             self.url,
