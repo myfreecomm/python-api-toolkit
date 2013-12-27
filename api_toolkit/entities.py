@@ -103,7 +103,7 @@ class Resource(object):
 
     def save(self):
         if 'PUT' not in self._allowed_methods:
-            raise ValueError("This resource can't be saved.")
+            raise ValueError('This resource cannot be saved.')
 
         dumped_data = json.dumps(self.resource_data)
         headers = {
@@ -129,7 +129,7 @@ class Resource(object):
 
     def delete(self):
         if 'DELETE' not in self._allowed_methods:
-            raise ValueError("This resource can't be deleted.")
+            raise ValueError('This resource cannot be deleted.')
 
         headers = {}
         if self.etag:
@@ -171,6 +171,7 @@ class Collection(object):
             for item in response.json():
                 instance = self.resource_class(
                     data=item, session=self._session,
+                    allowed_methods=response.headers.get('Allow', None),
                 )
                 yield instance
 
