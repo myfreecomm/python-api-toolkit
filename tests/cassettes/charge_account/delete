@@ -1,35 +1,39 @@
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        if-match: !!python/tuple [If-Match, !!python/unicode '3caaca1c2e7df6b678e16c617598380dc3e834ad']
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [If-Match, !!python/unicode '3caaca1c2e7df6b678e16c617598380dc3e834ad']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.charging.financeconnect.com.br
     method: DELETE
-    url: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
+    path: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
+    port: 80
+    protocol: http
   response:
     body: {string: ''}
     headers: {content-length: '0', content-type: text/html; charset=utf-8, date: 'Tue,
-        23 Jul 2013 23:35:35 GMT', link: '<http://localhost:8000/charge-accounts/>;
-        rel=charge_accounts', location: 'http://localhost:8000/charge-accounts/',
+        23 Jul 2013 23:35:35 GMT', link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>;
+        rel=charge_accounts', location: 'http://sandbox.charging.financeconnect.com.br/charge-accounts/',
       server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 204, message: NO CONTENT}
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.charging.financeconnect.com.br
     method: GET
-    url: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
+    path: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/
+    port: 80
+    protocol: http
   response:
     body: {string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 

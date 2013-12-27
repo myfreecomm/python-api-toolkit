@@ -6,5 +6,5 @@ setup(name='api_toolkit',
       install_requires=[
           'requests>=1.2.3'
       ],
-      tests_require=['vcrpy==0.0.3'],
+      tests_require=['vcrpy==0.5.0'],
      )

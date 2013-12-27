@@ -1,11 +1,18 @@
+import os
 from unittest import TestCase
 import vcr
 import requests
 
 from api_toolkit import Resource, Collection
 
+test_vcr = vcr.VCR(
+    cassette_library_dir = os.path.join(os.path.dirname(__file__), 'cassettes'),
+    match_on = ['url', 'method', 'headers', 'body'],
+    record_mode = 'none',
+)
+
 TEST_API = {
-    'ENTRYPOINT': 'http://localhost:8000/domain/',
+    'ENTRYPOINT': 'http://sandbox.charging.financeconnect.com.br/domain/',
     'USER': '',
     'PASSWORD': '1+OC7QHjQG6H9ITrLQ7CWw==',
     'URL_ATTRIBUTE_NAME': 'uri',
@@ -20,7 +27,7 @@ class TestResourceLoad(TestCase):
 
 
     def test_should_load_resource_informations_on_load(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -41,7 +48,7 @@ class TestResourceLoad(TestCase):
         self.assertEqual(resource.resource_data, response.json())
 
     def test_should_have_a_valid_session_on_load(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -59,7 +66,7 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['User-Agent'], 'api_toolkit')
 
     def test_should_put_response_in_the_resource(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -70,7 +77,7 @@ class TestResourceLoad(TestCase):
         self.assertTrue(isinstance(resource._response, requests.Response))
 
     def test_should_create_collections_with_links(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -92,7 +99,7 @@ class TestResourceLoad(TestCase):
             self.assertEqual(getattr(resource, item).url, response.links[item]['url'])
 
     def test_created_collections_should_have_a_valid_session(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -109,13 +116,12 @@ class TestResourceLoad(TestCase):
         self.assertEqual(session.headers['Content-Length'], '0')
 
     def test_should_raise_404_if_wrong_url(self):
-        with vcr.use_cassette('tests/cassettes/domain/wrong'):
-            with self.assertRaises(requests.HTTPError):
-                Resource.load(
-                    url = 'http://localhost:8000/api/',
-                    user = 'user',
-                    password = 'pass',
-                )
+        with test_vcr.use_cassette('domain/wrong'):
+            self.assertRaises(requests.HTTPError, Resource.load,
+                url = 'http://sandbox.charging.financeconnect.com.br/api/',
+                user = 'user',
+                password = 'pass',
+            )
 
 
 class TestResourceCollections(TestCase):
@@ -123,7 +129,7 @@ class TestResourceCollections(TestCase):
     def setUp(self):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
 
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             self.resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
@@ -131,7 +137,7 @@ class TestResourceCollections(TestCase):
             )
 
     def test_all_should_return_a_list_of_the_charge_accounts_available(self):
-        with vcr.use_cassette('tests/cassettes/charge_account/all'):
+        with test_vcr.use_cassette('charge_account/all'):
             charge_accounts = list(self.resource.charge_accounts.all())
 
         self.assertEqual(len(charge_accounts), 1)
@@ -140,7 +146,7 @@ class TestResourceCollections(TestCase):
             self.assertTrue(hasattr(item, TEST_API['URL_ATTRIBUTE_NAME']))
 
     def test_get_should_return_one_charge_account(self):
-        with vcr.use_cassette('tests/cassettes/charge_account/get'):
+        with test_vcr.use_cassette('charge_account/get'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
 
             charge_account = self.resource.charge_accounts.get(charge_account.uuid)
@@ -150,7 +156,7 @@ class TestResourceCollections(TestCase):
         self.assertTrue(hasattr(charge_account, 'resource_data'))
 
     def test_resources_created_by_collections_should_have_a_valid_session(self):
-        with vcr.use_cassette('tests/cassettes/charge_account/get'):
+        with test_vcr.use_cassette('charge_account/get'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
 
             charge_account = self.resource.charge_accounts.get(charge_account.uuid)
@@ -174,7 +180,7 @@ class TestResourceCollections(TestCase):
             'national_identifier': '86271628000147',
         }
 
-        with vcr.use_cassette('tests/cassettes/charge_account/create'):
+        with test_vcr.use_cassette('charge_account/create'):
             charge_account = self.resource.charge_accounts.create(
                 **data
             )
@@ -194,14 +200,14 @@ class TestResources(TestCase):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
 
     def test_save_should_put_the_resource(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             self.resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
                 password = TEST_API['PASSWORD'],
             )
 
-        with vcr.use_cassette('tests/cassettes/charge_account/save'):
+        with test_vcr.use_cassette('charge_account/save2', record_mode='once'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
 
             resource_data = charge_account.resource_data
@@ -221,14 +227,14 @@ class TestResources(TestCase):
         self.assertEqual(resource_data, charge_account.resource_data)
 
     def test_delete_should_delete_the_resource(self):
-        with vcr.use_cassette('tests/cassettes/domain/load'):
+        with test_vcr.use_cassette('domain/load'):
             self.resource = Resource.load(
                 url = TEST_API['ENTRYPOINT'],
                 user = TEST_API['USER'],
                 password = TEST_API['PASSWORD'],
             )
 
-        with vcr.use_cassette('tests/cassettes/charge_account/to_be_deleted'):
+        with test_vcr.use_cassette('charge_account/to_be_deleted'):
             charge_account = self.resource.charge_accounts.create(**{
                 'bank': '237',
                 'name': 'Charge Account to be deleted',
@@ -241,11 +247,10 @@ class TestResources(TestCase):
 
         uuid = charge_account.uuid
 
-        with vcr.use_cassette('tests/cassettes/charge_account/delete'):
+        with test_vcr.use_cassette('charge_account/delete'):
             charge_account.delete()
 
-            with self.assertRaises(requests.HTTPError):
-                self.resource.charge_accounts.get(uuid)
+            self.assertRaises(requests.HTTPError, self.resource.charge_accounts.get, uuid)
 
     def test_setattr_should_update_resource_data_if_it_is_the_same_key(self):
         resource = Resource({
@@ -255,8 +260,7 @@ class TestResources(TestCase):
 
         resource.first = 'new_value'
 
-        with self.assertRaises(AttributeError):
-            object.__getattribute__(resource, 'first')
+        self.assertRaises(AttributeError, object.__getattribute__, resource, 'first')
 
         self.assertTrue(resource.resource_data.has_key('first'))
         self.assertEqual(resource.resource_data['first'], 'new_value')
