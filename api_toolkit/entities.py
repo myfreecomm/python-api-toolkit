@@ -44,7 +44,6 @@ class Resource(object):
 
         instance = cls(
             data=response.json(),
-            type=kwargs.get('type'),
             links=response.links,
             session=session,
         )
@@ -86,15 +85,12 @@ class Resource(object):
             link_name = item['rel']
             link_url = item['url']
             link_collection = Collection(
-                link_url, type=link_name, session=self._session
+                link_url, session=self._session
             )
 
             setattr(self, link_name, link_collection)
 
     def save(self):
-        if 'PUT' not in self._allowed_methods:
-            raise ValueError('This resource cannot be saved.')
-
         dumped_data = json.dumps(self.resource_data)
         headers = {
             'Content-Length': str(len(dumped_data))
@@ -118,9 +114,6 @@ class Resource(object):
         return self
 
     def delete(self):
-        if 'DELETE' not in self._allowed_methods:
-            raise ValueError('This resource cannot be deleted.')
-
         headers = {}
         if self.etag:
             headers.update({'If-Match': self.etag})
@@ -129,8 +122,6 @@ class Resource(object):
 
 
 class Collection(object):
-    url = None
-    _session = None
 
     def __repr__(self):
         return '<api_toolkit.Collection type="%s">' % self.__class__
@@ -169,7 +160,6 @@ class Collection(object):
             for item in response.json():
                 instance = self.resource_class(
                     data=item, session=self._session,
-                    allowed_methods=response.headers['Allow']
                 )
                 yield instance
 
@@ -202,5 +192,18 @@ class Collection(object):
         )
 
         response.raise_for_status()
-        return self.resource_class.load(response.headers['Location'], session=self._session)
+        
+        try:
+            instance = self.resource_class(
+                data=response.json(),
+                links=response.links,
+                session=self._session,
+            )
+            instance.url = self.url
+        
+            instance._response = response
 
+        except ValueError:
+            instance = self.resource_class.load(response.headers['Location'], session=self._session)
+
+        return instance
