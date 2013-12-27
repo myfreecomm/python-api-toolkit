@@ -16,6 +16,7 @@ class Resource(object):
         self.resource_data = data
         self._links = kwargs.get('links', {})
         self._session = kwargs.get('session', self._session)
+        self._allowed_methods = kwargs.get('allowed_methods', ['HEAD', 'OPTIONS', 'GET', 'PUT'])
 
         self.prepare_collections()
 
@@ -89,6 +90,9 @@ class Resource(object):
             setattr(self, link_name, link_collection)
 
     def save(self):
+        if 'PUT' not in self._allowed_methods:
+            raise ValueError('This resource cannot be saved.')
+
         dumped_data = json.dumps(self.resource_data)
         headers = {
             'Content-Length': str(len(dumped_data))
@@ -112,6 +116,9 @@ class Resource(object):
         return self
 
     def delete(self):
+        if 'DELETE' not in self._allowed_methods:
+            raise ValueError('This resource cannot be deleted.')
+
         headers = {}
         if self.etag:
             headers.update({'If-Match': self.etag})
@@ -150,7 +157,8 @@ class Collection(object):
             response = self._session.get(url)
             for item in response.json():
                 instance = self.resource_class(
-                    data=item, session=self._session
+                    data=item, session=self._session,
+                    allowed_methods=response.headers['Allow']
                 )
                 yield instance
 
