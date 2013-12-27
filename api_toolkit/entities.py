@@ -10,12 +10,11 @@ class Resource(object):
     _session = None
 
     def __repr__(self):
-        return '<api_toolkit.Resource type="%s">' % self._type
+        return '<api_toolkit.Resource type="%s">' % self.__class__
 
     def __init__(self, data, **kwargs):
         self.resource_data = data
         self._links = kwargs.get('links', {})
-        self._type = kwargs.get('type', None)
         self._session = kwargs.get('session', self._session)
 
         self.prepare_collections()
@@ -122,17 +121,15 @@ class Resource(object):
 
 class Collection(object):
     url = None
-    resource_class = Resource
     _session = None
-    _type = 'entrypoint'
 
     def __repr__(self):
-        return '<api_toolkit.Collection type="%s">' % self._type
+        return '<api_toolkit.Collection type="%s">' % self.__class__
 
     def __init__(self, url, **kwargs):
         self.url = url
-        self._type = kwargs.get('type')
         self._session = kwargs.get('session')
+        self.resource_class = kwargs.get('resource_class', Resource)
 
         if self._session is None:
             user = kwargs.get('user', '')
@@ -153,7 +150,7 @@ class Collection(object):
             response = self._session.get(url)
             for item in response.json():
                 instance = self.resource_class(
-                    data=item, type=self._type, session=self._session
+                    data=item, session=self._session
                 )
                 yield instance
 
@@ -169,7 +166,7 @@ class Collection(object):
             url_template = '{0}{1}'
 
         url = url_template.format(self.url, identifier)
-        return self.resource_class.load(url, type=self._type, session=self._session)
+        return self.resource_class.load(url, session=self._session)
 
     def create(self, **kwargs):
         resource_data = json.dumps(kwargs)
@@ -180,5 +177,5 @@ class Collection(object):
         )
 
         response.raise_for_status()
-        return self.resource_class.load(response.headers['Location'], type=self._type, session=self._session)
+        return self.resource_class.load(response.headers['Location'], session=self._session)
 
