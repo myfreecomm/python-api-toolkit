@@ -63,60 +63,6 @@
         content-length: !!python/tuple [Content-Length, '0']
         content-type: !!python/tuple [Content-Type, application/json]
         user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: HEAD
-    url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/invoices/
-  response:
-    body: {string: ''}
-    headers: {content-encoding: gzip, content-length: '1153', content-type: text/html,
-      date: 'Fri, 27 Dec 2013 20:54:59 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
-        Python/2.7.6, vary: Accept-Encoding}
-    status: {code: 404, message: NOT FOUND}
-- request:
-    body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: HEAD
-    url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/invoices/
-  response:
-    body: {string: ''}
-    headers: {content-encoding: gzip, content-length: '1153', content-type: text/html,
-      date: 'Fri, 27 Dec 2013 20:54:59 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
-        Python/2.7.6, vary: Accept-Encoding}
-    status: {code: 404, message: NOT FOUND}
-- request:
-    body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: HEAD
-    url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/batches/
-  response:
-    body: {string: ''}
-    headers: {content-encoding: gzip, content-length: '1152', content-type: text/html,
-      date: 'Fri, 27 Dec 2013 20:54:59 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
-        Python/2.7.6, vary: Accept-Encoding}
-    status: {code: 404, message: NOT FOUND}
-- request:
-    body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
     method: OPTIONS
     url: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/invoices/
   response:
