@@ -4,7 +4,8 @@ import requests
 
 __all__ = ['Resource', 'Collection']
 
-SAFE_METHODS = ['HEAD', 'OPTIONS', 'GET']
+SAFE_METHODS = 'HEAD, OPTIONS, GET'
+
 
 class Resource(object):
     url_attribute_name = 'url'
