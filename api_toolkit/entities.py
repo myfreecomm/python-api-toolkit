@@ -46,39 +46,6 @@ class Resource(object):
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
 
-    def __init__(self, **kwargs):
-        self.resource_data = kwargs
-
-    @classmethod
-    def from_response(cls, response, session):
-        instance = cls(**response.json())
-        instance._session = session
-        instance.response = response
-
-        return instance
-
-    @property
-    def response(self):
-        return self._response
-
-    @response.setter
-    def response(self, response):
-        self._response = response
-        self._meta['links'] = response.links
-        self._meta['etag'] = response.headers.get('etag', None)
-        self._meta['allowed_methods'] = response.headers.get('Allow', ALL_METHODS)
-
-        self.prepare_collections()
-
-    @classmethod
-    def load(cls, url, **kwargs):
-        session = kwargs.pop('session', cls.session_factory.make(**kwargs))
-
-        response = session.get(url)
-        response.raise_for_status()
-
-        return cls.from_response(response, session)
-
     def __setattr__(self, name, value):
         if (hasattr(self, 'resource_data')
             and self.resource_data.has_key(name)
@@ -93,6 +60,39 @@ class Resource(object):
             return object.__getattribute__(self, name)
         except AttributeError:
             return object.__getattribute__(self, 'resource_data')[name]
+
+    def __init__(self, **kwargs):
+        self.resource_data = kwargs
+
+    @classmethod
+    def from_response(cls, response, session):
+        instance = cls(**response.json())
+        instance._session = session
+        instance.response = response
+
+        return instance
+
+    @classmethod
+    def load(cls, url, **kwargs):
+        session = kwargs.pop('session', cls.session_factory.make(**kwargs))
+
+        response = session.get(url)
+        response.raise_for_status()
+
+        return cls.from_response(response, session)
+
+    @property
+    def response(self):
+        return self._response
+
+    @response.setter
+    def response(self, response):
+        self._response = response
+        self._meta['links'] = response.links
+        self._meta['etag'] = response.headers.get('etag', None)
+        self._meta['allowed_methods'] = response.headers.get('Allow', ALL_METHODS)
+
+        self.prepare_collections()
 
     @property
     def url(self):
@@ -178,7 +178,7 @@ class Collection(object):
         response = self._session.options(self.url)
         return response.headers.get('Allow', ALL_METHODS)
 
-    def all(self):
+    def all(self, load_options=False):
         if 'GET' not in self._allowed_methods:
             raise ValueError('This collection is not iterable.')
 
@@ -188,7 +188,8 @@ class Collection(object):
             for item in response.json():
                 instance = self.resource_class(**item)
                 instance._session = self._session
-                instance.load_options()
+                if load_options:
+                    instance.load_options()
                 yield instance
 
             if not response.links.has_key('next'):
