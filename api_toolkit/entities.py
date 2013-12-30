@@ -200,7 +200,6 @@ class Collection(object):
                 links=response.links,
                 session=self._session,
             )
-            instance.url = self.url
         
             instance._response = response
 
