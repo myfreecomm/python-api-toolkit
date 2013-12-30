@@ -57,6 +57,7 @@ class Resource(object):
             data=response.json(),
             links=response.links,
             session=session,
+            allowed_methods=response.headers.get('Allow', None),
         )
         instance.url = url
 
