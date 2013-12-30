@@ -81,10 +81,6 @@ class Resource(object):
     def url(self):
         return self.resource_data.get(self.url_attribute_name)
 
-    @url.setter
-    def url(self, value):
-        self.resource_data[self.url_attribute_name] = value
-
     @property
     def etag(self):
         return self.resource_data.get('etag') or self._response.get('etag')
