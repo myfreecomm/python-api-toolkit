@@ -118,7 +118,7 @@ class TestResourceLoad(TestCase):
                 )
 
 
-class TestResourceCollections(TestCase):
+class TestCollections(TestCase):
 
     def setUp(self):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
