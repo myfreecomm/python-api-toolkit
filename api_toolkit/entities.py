@@ -16,16 +16,19 @@ class SessionFactory(object):
     }
 
     @classmethod
-    def make(cls, **kwargs):
+    def make(cls, **credentials):
         session = requests.Session()
-        session.auth = cls.get_auth(**kwargs)
+        session.auth = cls.get_auth(**credentials)
         session.headers.update(cls.default_headers)
 
         return session
 
     @classmethod
-    def get_auth(cls, **kwargs):
-        return (kwargs.pop('user', ''), kwargs.pop('password', ''))
+    def get_auth(cls, **credentials):
+        return (
+            credentials.get('user', ''),
+            credentials.get('password', '')
+        )
 
 
 class Resource(object):
