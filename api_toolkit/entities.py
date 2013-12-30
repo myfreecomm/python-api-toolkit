@@ -34,30 +34,41 @@ class SessionFactory(object):
 class Resource(object):
     url_attribute_name = 'url'
     session_factory = SessionFactory
-    
+
+    _response = None
+    _meta = {
+        'allowed_methods': ALL_METHODS,
+        'etag': None,
+        'links': {},
+        'fields': None,
+    }
+
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
 
-    def __init__(self, data, session, links={}, allowed_methods=ALL_METHODS):
-        self.resource_data = data
-        self._session = session
-        self._links = links
-        self._allowed_methods = allowed_methods
-
-        self.prepare_collections()
+    def __init__(self, **kwargs):
+        self.resource_data = kwargs
 
     @classmethod
     def from_response(cls, response, session):
-        instance = cls(
-            data=response.json(), 
-            session=session,
-            links=response.links,
-            allowed_methods=response.headers.get('Allow', ALL_METHODS),
-        )
-        instance._response = response
+        instance = cls(**response.json())
+        instance._session = session
+        instance.response = response
 
         return instance
-        
+
+    @property
+    def response(self):
+        return self._response
+
+    @response.setter
+    def response(self, response):
+        self._response = response
+        self._meta['links'] = response.links
+        self._meta['etag'] = response.headers.get('etag', None)
+        self._meta['allowed_methods'] = response.headers.get('Allow', ALL_METHODS)
+
+        self.prepare_collections()
 
     @classmethod
     def load(cls, url, **kwargs):
@@ -87,12 +98,8 @@ class Resource(object):
     def url(self):
         return self.resource_data.get(self.url_attribute_name)
 
-    @property
-    def etag(self):
-        return self.resource_data.get('etag') or self._response.get('etag')
-
     def prepare_collections(self):
-        for item in self._links.values():
+        for item in self._meta['links'].values():
             link_name = item['rel']
             link_url = item['url']
             link_collection = Collection(
@@ -101,16 +108,30 @@ class Resource(object):
 
             setattr(self, link_name, link_collection)
 
+    def load_options(self):
+        if self._session and self.url:
+            self.response = self._session.options(self.url)
+        else:
+            raise ValueError('Cannot load options for this instance')
+
     def save(self):
-        if 'PUT' not in self._allowed_methods:
+        if 'PUT' not in self._meta['allowed_methods']:
             raise ValueError('This resource cannot be saved.')
 
-        dumped_data = json.dumps(self.resource_data)
+        if self._meta['fields'] is None:
+            dumped_data = json.dumps(self.resource_data)
+        else:
+            filtered_data = dict((k, v)
+                for k, v in self.resource_data.items()
+                if k in self._meta['fields']
+            )
+            dumped_data = json.dumps(filtered_data)
+
         headers = {
             'Content-Length': str(len(dumped_data))
         }
-        if self.resource_data.has_key('etag'):
-            headers.update({'If-Match': self.etag})
+        if self._meta.get('etag'):
+            headers.update({'If-Match': self._meta['etag']})
 
         response = self._session.put(
             self.url,
@@ -119,21 +140,23 @@ class Resource(object):
         )
         response.raise_for_status()
 
-        response = self._session.get(self.url)
-        response.raise_for_status()
+        try:
+            instance = self.__class__.from_response(
+                response=response, session=self._session
+            )
+        except ValueError:
+            instance = self.__class__.load(self.url, session=self._session)
 
-        self.resource_data = response.json()
-        self._links=response.links
-
-        return self
+        return instance
 
     def delete(self):
-        if 'DELETE' not in self._allowed_methods:
+        if 'DELETE' not in self._meta['allowed_methods']:
             raise ValueError('This resource cannot be deleted.')
 
         headers = {}
-        if self.etag:
-            headers.update({'If-Match': self.etag})
+        if self._meta.get('etag'):
+            headers.update({'If-Match': self._meta['etag']})
+
         response = self._session.delete(self.url, headers=headers)
         response.raise_for_status()
 
@@ -163,9 +186,9 @@ class Collection(object):
         while True:
             response = self._session.get(url)
             for item in response.json():
-                instance = self.resource_class(
-                    data=item, session=self._session,
-                )
+                instance = self.resource_class(**item)
+                instance._session = self._session
+                instance.load_options()
                 yield instance
 
             if not response.links.has_key('next'):
