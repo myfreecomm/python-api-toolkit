@@ -57,7 +57,7 @@ class Resource(object):
             data=response.json(),
             links=response.links,
             session=session,
-            allowed_methods=response.headers.get('Allow', None),
+            allowed_methods=response.headers.get('Allow', ALL_METHODS),
         )
         instance.url = url
 
@@ -172,7 +172,7 @@ class Collection(object):
             for item in response.json():
                 instance = self.resource_class(
                     data=item, session=self._session,
-                    allowed_methods=response.headers.get('Allow', None),
+                    allowed_methods=response.headers.get('Allow', ALL_METHODS),
                 )
                 yield instance
 

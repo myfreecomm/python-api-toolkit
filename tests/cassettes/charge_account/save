@@ -199,3 +199,25 @@
       date: 'Fri, 27 Dec 2013 20:57:51 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
         Python/2.7.6, vary: Accept-Encoding}
     status: {code: 404, message: NOT FOUND}
+- request:
+    body: null
+    headers: !!python/object:requests.structures.CaseInsensitiveDict
+      _store:
+        accept: !!python/tuple [Accept, application/json]
+        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic Og==']
+        content-length: !!python/tuple [Content-Length, '0']
+        content-type: !!python/tuple [Content-Type, application/json]
+        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    method: OPTIONS
+    url: /
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA12OQQqAIBBF90F3kC4wRS0nl90jc1DBFGSgun1aLqLl/P94f9Dy7mXboKVVS2TH
+        nuTUj2KJSTmtKSC8IcKDZFRFfQlltuhjmrvDOqauKDYKTEmiHf6GnCDUumxlqF7BuHB+Oyj2YoP6
+        2Q30aUKpogAAAA==
+    headers: {connection: keep-alive, content-encoding: gzip, content-type: text/html,
+      date: 'Mon, 30 Dec 2013 17:57:24 GMT', keep-alive: timeout=5, server: nginx,
+      transfer-encoding: chunked, vary: Accept-Encoding}
+    status: {code: 403, message: Forbidden}
