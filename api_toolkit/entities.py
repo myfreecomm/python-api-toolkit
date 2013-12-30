@@ -16,12 +16,16 @@ class SessionFactory(object):
     }
 
     @classmethod
-    def make(cls, user, password):
+    def make(cls, **kwargs):
         session = requests.Session()
-        session.auth = (user, password)
+        session.auth = cls.get_auth(**kwargs)
         session.headers.update(cls.default_headers)
 
         return session
+
+    @classmethod
+    def get_auth(cls, **kwargs):
+        return (kwargs.pop('user', ''), kwargs.pop('password', ''))
 
 
 class Resource(object):
@@ -42,13 +46,7 @@ class Resource(object):
 
     @classmethod
     def load(cls, url, **kwargs):
-        session = kwargs.get('session')
-
-        if session is None:
-            user = kwargs.get('user', '')
-            password = kwargs.get('password', '')
-
-            session = cls.session_factory.make(user, password)
+        session = kwargs.pop('session', cls.session_factory.make(**kwargs))
 
         response = session.get(url)
         response.raise_for_status()
@@ -147,14 +145,8 @@ class Collection(object):
 
     def __init__(self, url, **kwargs):
         self.url = url
-        self._session = kwargs.get('session')
+        self._session = kwargs.pop('session', self.session_factory.make(**kwargs))
         self.resource_class = kwargs.get('resource_class', Resource)
-
-        if self._session is None:
-            user = kwargs.get('user', '')
-            password = kwargs.get('password', '')
-
-            self._session = self.session_factory.make(user, password)
 
         self._allowed_methods = self.discover_allowed_methods()
 
