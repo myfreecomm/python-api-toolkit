@@ -285,7 +285,7 @@ class TestResources(TestCase):
         resource = Resource({
             'first': 'first_value',
             'second': 'second_value',
-        })
+        }, session=requests.Session())
 
         resource.first = 'new_value'
 
@@ -299,7 +299,7 @@ class TestResources(TestCase):
         resource = Resource({
             'first': 'first_value',
             'second': 'second_value',
-        })
+        }, session=requests.Session())
 
         resource.third = 'new_value'
 
@@ -312,7 +312,7 @@ class TestResources(TestCase):
         resource = Resource({
             'first': 'first_value',
             'second': 'second_value',
-        })
+        }, session=requests.Session())
 
         col = Collection('http://dummyurl.com/', type='type')
         resource.first = col
@@ -326,7 +326,7 @@ class TestResources(TestCase):
     def test_getattr_should_prioritize_instance_attributes(self):
         resource = Resource({
             'first': 'first_value',
-        })
+        }, session=requests.Session())
 
         resource.second = 'instance_value'
         resource.resource_data.update({'second': 'dict_value'})

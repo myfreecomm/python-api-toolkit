@@ -30,19 +30,31 @@ class SessionFactory(object):
 
 class Resource(object):
     url_attribute_name = 'url'
-    _session = None
     session_factory = SessionFactory
-
+    
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
 
-    def __init__(self, data, **kwargs):
+    def __init__(self, data, session, links={}, allowed_methods=ALL_METHODS):
         self.resource_data = data
-        self._links = kwargs.get('links', {})
-        self._session = kwargs.get('session', self._session)
-        self._allowed_methods = kwargs.get('allowed_methods', ALL_METHODS)
+        self._session = session
+        self._links = links
+        self._allowed_methods = allowed_methods
 
         self.prepare_collections()
+
+    @classmethod
+    def from_response(cls, response, session):
+        instance = cls(
+            data=response.json(), 
+            session=session,
+            links=response.links,
+            allowed_methods=response.headers.get('Allow', ALL_METHODS),
+        )
+        instance._response = response
+
+        return instance
+        
 
     @classmethod
     def load(cls, url, **kwargs):
@@ -51,16 +63,7 @@ class Resource(object):
         response = session.get(url)
         response.raise_for_status()
 
-        instance = cls(
-            data=response.json(),
-            links=response.links,
-            session=session,
-            allowed_methods=response.headers.get('Allow', ALL_METHODS),
-        )
-
-        instance._response = response
-
-        return instance
+        return cls.from_response(response, session)
 
     def __setattr__(self, name, value):
         if (hasattr(self, 'resource_data')
@@ -159,7 +162,6 @@ class Collection(object):
             for item in response.json():
                 instance = self.resource_class(
                     data=item, session=self._session,
-                    allowed_methods=response.headers.get('Allow', ALL_METHODS),
                 )
                 yield instance
 
@@ -191,15 +193,13 @@ class Collection(object):
         response.raise_for_status()
         
         try:
-            instance = self.resource_class(
-                data=response.json(),
-                links=response.links,
-                session=self._session,
+            instance = self.resource_class.from_response(
+                response=response, session=self._session
             )
-        
-            instance._response = response
-
         except ValueError:
-            instance = self.resource_class.load(response.headers['Location'], session=self._session)
+            instance = self.resource_class.load(
+                url=response.headers['Location'],
+                session=self._session
+            )
 
         return instance
