@@ -57,7 +57,6 @@ class Resource(object):
             session=session,
             allowed_methods=response.headers.get('Allow', ALL_METHODS),
         )
-        instance.url = url
 
         instance._response = response
 
