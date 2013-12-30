@@ -173,9 +173,6 @@ class Collection(object):
             url = response.links['next']['url']
 
     def get(self, identifier, append_slash=True):
-        if 'GET' not in self._allowed_methods:
-            raise ValueError('This collection cannot be loaded.')
-
         if append_slash:
             url_template = '{0}{1}/'
         else:
