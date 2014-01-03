@@ -4,7 +4,6 @@ import requests
 
 __all__ = ['Resource', 'Collection']
 
-ALL_METHODS = 'HEAD, OPTIONS, GET, PUT, POST, DELETE'
 
 
 class SessionFactory(object):
@@ -31,17 +30,43 @@ class SessionFactory(object):
         )
 
 
-class Resource(object):
+class UsingOptions(object):
+
+    ALL_METHODS = 'HEAD, OPTIONS, GET, PUT, POST, DELETE'
+
+    def __init__(self, *args, **kwargs):
+        super(UsingOptions, self).__init__()
+        self._meta = {
+            'allowed_methods': UsingOptions.ALL_METHODS,
+            'etag': None,
+            'links': {},
+            'fields': None,
+        }
+
+    @property
+    def response(self):
+        return self._response
+
+    @response.setter
+    def response(self, response):
+        self._response = response
+        self._meta['links'] = response.links
+        self._meta['etag'] = response.headers.get('etag', None)
+        if 'Allow' in response.headers:
+            self._meta['allowed_methods'] = response.headers['Allow']
+
+    def load_options(self):
+        if self._session and self.url:
+            self.response = self._session.options(self.url)
+        else:
+            raise ValueError('Cannot load options for this instance')
+
+
+class Resource(UsingOptions):
     url_attribute_name = 'url'
     session_factory = SessionFactory
 
     _response = None
-    _meta = {
-        'allowed_methods': ALL_METHODS,
-        'etag': None,
-        'links': {},
-        'fields': None,
-    }
 
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
@@ -62,7 +87,12 @@ class Resource(object):
             return object.__getattribute__(self, 'resource_data')[name]
 
     def __init__(self, **kwargs):
+        super(Resource, self).__init__(**kwargs)
         self.resource_data = kwargs
+
+    @property
+    def response(self):
+        return self._response
 
     @classmethod
     def from_response(cls, response, session):
@@ -81,16 +111,12 @@ class Resource(object):
 
         return cls.from_response(response, session)
 
-    @property
-    def response(self):
-        return self._response
-
     @response.setter
     def response(self, response):
         self._response = response
         self._meta['links'] = response.links
         self._meta['etag'] = response.headers.get('etag', None)
-        self._meta['allowed_methods'] = response.headers.get('Allow', ALL_METHODS)
+        self._meta['allowed_methods'] = response.headers.get('Allow', self.ALL_METHODS)
 
         self.prepare_collections()
 
@@ -107,12 +133,6 @@ class Resource(object):
             )
 
             setattr(self, link_name, link_collection)
-
-    def load_options(self):
-        if self._session and self.url:
-            self.response = self._session.options(self.url)
-        else:
-            raise ValueError('Cannot load options for this instance')
 
     def save(self):
         if 'PUT' not in self._meta['allowed_methods']:
@@ -161,25 +181,20 @@ class Resource(object):
         response.raise_for_status()
 
 
-class Collection(object):
+class Collection(UsingOptions):
     session_factory = SessionFactory
 
     def __repr__(self):
         return '<api_toolkit.Collection type="%s">' % self.__class__
 
     def __init__(self, url, **kwargs):
+        super(Collection, self).__init__(url, **kwargs)
         self.url = url
         self._session = kwargs.pop('session', self.session_factory.make(**kwargs))
         self.resource_class = kwargs.get('resource_class', Resource)
 
-        self._allowed_methods = self.discover_allowed_methods()
-
-    def discover_allowed_methods(self):
-        response = self._session.options(self.url)
-        return response.headers.get('Allow', ALL_METHODS)
-
     def all(self, load_options=False):
-        if 'GET' not in self._allowed_methods:
+        if 'GET' not in self._meta['allowed_methods']:
             raise ValueError('This collection is not iterable.')
 
         url = self.url
@@ -207,7 +222,7 @@ class Collection(object):
         return self.resource_class.load(url, session=self._session)
 
     def create(self, **kwargs):
-        if 'POST' not in self._allowed_methods:
+        if 'POST' not in self._meta['allowed_methods']:
             raise ValueError('No items can be created for this collection.')
 
         resource_data = json.dumps(kwargs)
