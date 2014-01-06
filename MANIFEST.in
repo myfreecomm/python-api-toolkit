@@ -1,0 +1,3 @@
+include README.md
+recursive-include api_toolkit/tests *.py
+recursive-include api_toolkit/tests/cassettes *
