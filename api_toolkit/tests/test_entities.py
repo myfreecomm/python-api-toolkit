@@ -114,7 +114,7 @@ class TestResourceLoad(TestCase):
     def test_should_raise_404_if_wrong_url(self):
         with use_cassette('domain/wrong'):
             self.assertRaises(
-                requests.HTTPError
+                requests.HTTPError,
                 Resource.load,
                 url = 'http://sandbox.charging.financeconnect.com.br/api/',
                 user = 'user',
