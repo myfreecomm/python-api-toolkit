@@ -113,12 +113,13 @@ class TestResourceLoad(TestCase):
 
     def test_should_raise_404_if_wrong_url(self):
         with use_cassette('domain/wrong'):
-            with self.assertRaises(requests.HTTPError):
-                Resource.load(
-                    url = 'http://sandbox.charging.financeconnect.com.br/api/',
-                    user = 'user',
-                    password = 'pass',
-                )
+            self.assertRaises(
+                requests.HTTPError
+                Resource.load,
+                url = 'http://sandbox.charging.financeconnect.com.br/api/',
+                user = 'user',
+                password = 'pass',
+            )
 
 
 class TestCollections(TestCase):
@@ -181,8 +182,7 @@ class TestCollections(TestCase):
             charge_account = self.resource.charge_accounts.create(**data)
 
         # this cassette has no Location in the response.
-        with self.assertRaises(KeyError):
-            charge_account._response.headers['Location']
+        self.assertFalse('Location' in charge_account._response.headers)
 
         self.assertTrue(isinstance(charge_account, Resource))
 
@@ -266,7 +266,6 @@ class TestResources(TestCase):
 
         with use_cassette('charge_account/delete'):
             charge_account.delete()
-
             self.assertRaises(requests.HTTPError, self.resource.charge_accounts.get, uuid)
 
     def test_setattr_should_update_resource_data_if_it_is_the_same_key(self):
