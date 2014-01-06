@@ -5,13 +5,14 @@ import requests
 from helpers import use_cassette
 from api_toolkit import Resource, Collection
 
+__all__ = ['TestResourceLoad', 'TestCollections', 'TestResources']
+
 TEST_API = {
     'ENTRYPOINT': 'http://localhost:8000/domain/',
     'USER': '',
     'PASSWORD': '1+OC7QHjQG6H9ITrLQ7CWw==',
     'URL_ATTRIBUTE_NAME': 'uri',
 }
-
 
 
 class TestResourceLoad(TestCase):
