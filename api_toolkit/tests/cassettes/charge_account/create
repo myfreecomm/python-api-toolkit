@@ -1,0 +1,51 @@
+- request: !!python/object:vcr.request.Request
+    body: '{"account": {"digit": "6", "number": 1432}, "name": "Bradesco charge_account",
+      "portfolio_code": "11", "agency": {"digit": "", "number": 412}, "national_identifier":
+      "86271628000147", "bank": "237", "agreement_code": "1234"}'
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Content-Length, !!python/unicode '224']
+    host: sandbox.charging.financeconnect.com.br
+    method: POST
+    path: /charge-accounts/
+    port: 80
+    protocol: http
+  response:
+    body: {string: CREATED}
+    headers: {content-length: '7', content-type: text/html; charset=utf-8, date: 'Tue,
+        23 Jul 2013 23:35:34 GMT', link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/>;
+        rel=charge_account, <http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      location: 'http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 201, message: CREATED}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.charging.financeconnect.com.br
+    method: GET
+    path: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "45c22499e98ddb438ef50ddae85fe1cd44bfab05",
+        "portfolio_code": "11", "supplier_name": "Gerardon", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/",
+        "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
+        "agreement_code": "1234", "address": "Rua BOLADA", "national_identifier_type":
+        2, "advance_days": 10, "bank": "237", "uuid": "d69a42d5-90e0-4fca-a244-6c8f01bae477"}'}
+    headers: {content-length: '564', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:34 GMT', etag: '"45c22499e98ddb438ef50ddae85fe1cd44bfab05"',
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/batches/>;
+        rel=batches, <http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/>;
+        rel=invoices', server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}

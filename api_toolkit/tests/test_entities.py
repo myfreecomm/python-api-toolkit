@@ -1,3 +1,4 @@
+import os
 from unittest import TestCase
 import vcr
 import requests
@@ -8,7 +9,7 @@ from api_toolkit import Resource, Collection
 __all__ = ['TestResourceLoad', 'TestCollections', 'TestResources']
 
 TEST_API = {
-    'ENTRYPOINT': 'http://localhost:8000/domain/',
+    'ENTRYPOINT': 'http://sandbox.charging.financeconnect.com.br/domain/',
     'USER': '',
     'PASSWORD': '1+OC7QHjQG6H9ITrLQ7CWw==',
     'URL_ATTRIBUTE_NAME': 'uri',
@@ -114,7 +115,7 @@ class TestResourceLoad(TestCase):
         with use_cassette('domain/wrong'):
             with self.assertRaises(requests.HTTPError):
                 Resource.load(
-                    url = 'http://localhost:8000/api/',
+                    url = 'http://sandbox.charging.financeconnect.com.br/api/',
                     user = 'user',
                     password = 'pass',
                 )
@@ -148,7 +149,6 @@ class TestCollections(TestCase):
 
             charge_account = self.resource.charge_accounts.get(charge_account.uuid)
 
-        #self.assertEqual(charge_account._type, self.resource.charge_accounts._type)
         self.assertTrue(hasattr(charge_account, TEST_API['URL_ATTRIBUTE_NAME']))
         self.assertTrue(hasattr(charge_account, 'resource_data'))
 
@@ -177,16 +177,12 @@ class TestCollections(TestCase):
             'national_identifier': '86271628000147',
         }
 
-        with use_cassette('charge_account/create_with_returned_data'):
-            charge_account = self.resource.charge_accounts.create(
-                **data
-            )
+        with use_cassette('charge_account/create'):
+            charge_account = self.resource.charge_accounts.create(**data)
 
         # this cassette has no Location in the response.
         with self.assertRaises(KeyError):
             charge_account._response.headers['Location']
-
-        self.assertEqual(charge_account._response.request.method, 'POST')
 
         self.assertTrue(isinstance(charge_account, Resource))
 
@@ -208,11 +204,8 @@ class TestCollections(TestCase):
         }
 
         with use_cassette('charge_account/create_with_location'):
-            charge_account = self.resource.charge_accounts.create(
-                **data
-            )
+            charge_account = self.resource.charge_accounts.create(**data)
 
-        
         self.assertEqual(charge_account._response.request.method, 'GET')
 
         self.assertTrue(isinstance(charge_account, Resource))
@@ -237,23 +230,17 @@ class TestResources(TestCase):
                 password = TEST_API['PASSWORD'],
             )
 
-        with use_cassette('charge_account/save'):
+        with use_cassette('charge_account/save', record_mode='once'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
-
             resource_data = charge_account.resource_data
 
             charge_account.supplier_name = 'Rubia'
             charge_account.address = 'Rua do BUSTV'
             charge_account.save()
 
-            charge_account = self.resource.charge_accounts.get(charge_account.uuid)
-
-        self.assertNotEqual(resource_data.pop('etag'), charge_account.resource_data.pop('etag'))
         self.assertEqual(charge_account.resource_data.pop('supplier_name'), 'Rubia')
         self.assertEqual(charge_account.resource_data.pop('address'), 'Rua do BUSTV')
 
-        resource_data.pop('supplier_name')
-        resource_data.pop('address')
         self.assertEqual(resource_data, charge_account.resource_data)
 
     def test_delete_should_delete_the_resource(self):
@@ -280,8 +267,7 @@ class TestResources(TestCase):
         with use_cassette('charge_account/delete'):
             charge_account.delete()
 
-            with self.assertRaises(requests.HTTPError):
-                self.resource.charge_accounts.get(uuid)
+            self.assertRaises(requests.HTTPError, self.resource.charge_accounts.get, uuid)
 
     def test_setattr_should_update_resource_data_if_it_is_the_same_key(self):
         resource = Resource(
@@ -292,8 +278,7 @@ class TestResources(TestCase):
 
         resource.first = 'new_value'
 
-        with self.assertRaises(AttributeError):
-            object.__getattribute__(resource, 'first')
+        self.assertRaises(AttributeError, object.__getattribute__, resource, 'first')
 
         self.assertTrue(resource.resource_data.has_key('first'))
         self.assertEqual(resource.resource_data['first'], 'new_value')

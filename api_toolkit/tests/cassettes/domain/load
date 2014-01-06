@@ -1,99 +1,97 @@
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.charging.financeconnect.com.br
     method: GET
-    url: /domain/
+    path: /domain/
+    port: 80
+    protocol: http
   response:
-    body: {string: '{"description": null, "uri": "http://localhost:8000/domain/",
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
     headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
         Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://localhost:8000/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
         Python/2.7.3}
     status: {code: 200, message: OK}
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.charging.financeconnect.com.br
     method: GET
-    url: /domain/
+    path: /domain/
+    port: 80
+    protocol: http
   response:
-    body: {string: '{"description": null, "uri": "http://localhost:8000/domain/",
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
+        Python/2.7.3}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [accept, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [User-Agent, api_toolkit]
+    host: sandbox.charging.financeconnect.com.br
+    method: GET
+    path: /domain/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "f1750ae268cb76eaa37eeec8f42290b0da46c042",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
     headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
         Jul 2013 23:35:34 GMT', etag: '"f1750ae268cb76eaa37eeec8f42290b0da46c042"',
-      link: '<http://localhost:8000/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
         Python/2.7.3}
     status: {code: 200, message: OK}
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: HEAD
-    url: /charge-accounts/
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
+    host: sandbox.charging.financeconnect.com.br
+    method: GET
+    path: /domain/
+    port: 80
+    protocol: http
   response:
-    body: {string: ''}
-    headers: {content-encoding: gzip, content-length: '1111', content-type: text/html,
-      date: 'Fri, 27 Dec 2013 20:53:39 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
-        Python/2.7.6, vary: Accept-Encoding}
-    status: {code: 404, message: NOT FOUND}
-- request:
-    body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
-    method: OPTIONS
-    url: /charge-accounts/
-  response:
-    body:
-      string: !!binary |
-        H4sIAMfpvVIC/+1YUW/bNhB+z6+42VvTFrFlZ1lQyLKHLcm2AlsSZMmAYtgKWjxZXClSIyknTrH/
-        vqNEKXacPPShBgYsAWJavPu+u+OR+pi95IvTi5Prd5dnkLtCzvYS/wGSqcW0h6rnHyDjsz2ApEDH
-        yMqVA/y7EstpL9XKoXIDtyqxB+HbtOfwzkUeZgJpzoxFN61cNnjTq1GccBJnl2yBoLSDTFeKA3MQ
-        edsFDlia0iNnoyRqTDtqxQqc9oyea2fX6M4vzs8Ozi++uzr56e1vZw2JdSuJ4OMK4aTW1jNQpwmv
-        4SOUjHOhFvFoAgUxC+VH/9Q2c81XGzbjUXkHh/TnkcUjnLW5j5SZcrEtmJRgmbIDi0ZkE5iz9MPC
-        +KzjPiKuO824WJLjXBuOZkBpOl3EY2K2WgoOfc55a56PA8PgFsUid7HShqjaVFrn4REWay62ZKr1
-        s+Ie4+PRV7RIWmoT94+PjydPQjbujs2ppG10NKko9hAqIUhWWoyhHU3gVnCXU+E8Q0DgB+Byglii
-        cSJlcsCkWKjY6XLSVfGQ0v36oc61fYA69Ln41Qx+xke5GX5AGdRT8fCbh+z7QmXah79W/uzY/25a
-        aElGoR9g5BHg6DEK2UjR1jFjhZCrGAqtNNU37Va0b6uCgFabpNDPsrQzwbuSthpzQqtHsdWtsdkJ
-        4Juwqbt3T6K6y2mHRs0WTeoe8jO+jwSf9kIEofOTfPx43yW+I2Yvj0ZHrwjOjwlsHMybFU8ls3ba
-        8zsw4Pgp0w79l3x2RScCWge/oMs1j2nr5usGfHZxef324vxXmuAdSPSA8izgzdXPG2geyx9BcRRJ
-        TS2Ua+viN6PR6Knj4wkqGvms6ipFVKaNcvnFDTm2jmULcWOpr6gd0YdEZ08GHDOhkINQkKSa46wy
-        0iZRPTwIXqd/0UGqwRlBhuRsa3dqU+fQKHvgnV0uLDSbqgu3o020fChMN6DnUszWvm7MNT9/frn1
-        6Pf6BN0XiuPd/h/PuSfROvancVo9Nxg9y1xPfx5mqmeh7XuO7+mcXYpUPx/FlunniajrxK2p/9n+
-        E2wlHXy3tDF3Q6tZ5fJoPBzths5avRsixZZzZnbDdY90tNkPuyErjc6ExB1VUTuRkWbySmFX+4AX
-        Qu2SipWl3G2K2iyYEve7pPTXFpa6bbLwckK1RKlLHATDz/NuMqStMkOEdL7taLtYR2VOo5ffXr6Q
-        bkIKKH+xcJPh61fb7+lPok+iB4lEcu2aFFpaGUNXQy+1DoI221aHjU4DLrjad6T4XZoDUyvQWSPU
-        hp0K2+u04t6aWFyT7q2+7lTbO13tGwSL2IhGEnhojDYwx5RVJAJXuoKcLTFEd3r2/c2PMIVrU2GI
-        jJRhACNb0wpJuks7grTgT54hnOT0lO65Od2fnQ5gPzBpscuPkcpvnAPcraALKReWol8BA1oWxZnh
-        QHcA0qULHDa5NMmHvJOouVokUfNPgn8B2zaoZDYQAAA=
-    headers: {content-encoding: gzip, content-length: '1115', content-type: text/html,
-      date: 'Fri, 27 Dec 2013 20:57:43 GMT', p3p: CP="NON DSP COR CURa TIA", server: WSGIServer/0.1
-        Python/2.7.6, vary: Accept-Encoding}
-    status: {code: 404, message: NOT FOUND}
+    body: {string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+        <title>401 Unauthorized</title>
+
+        <h1>Unauthorized</h1>
+
+        <p>The server could not verify that you are authorized to access the URL requested.  You
+        either supplied the wrong credentials (e.g. a bad password), or your browser
+        doesn''t understand how to supply the credentials required.</p>
+
+        '}
+    headers: {connection: keep-alive, content-length: '339', content-type: text/html;
+        charset=utf-8, date: 'Fri, 27 Dec 2013 18:57:31 GMT', server: nginx/1.1.19}
+    status: {code: 401, message: UNAUTHORIZED}

@@ -1,15 +1,17 @@
-- request:
+- request: !!python/object:vcr.request.Request
     body: null
-    headers: !!python/object:requests.structures.CaseInsensitiveDict
-      _store:
-        accept: !!python/tuple [Accept, application/json]
-        accept-encoding: !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-        authorization: !!python/tuple [Authorization, !!python/unicode 'Basic dXNlcjpwYXNz']
-        content-length: !!python/tuple [Content-Length, '0']
-        content-type: !!python/tuple [Content-Type, application/json]
-        user-agent: !!python/tuple [User-Agent, api_toolkit]
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic dXNlcjpwYXNz']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Content-Length, '0']
+    host: sandbox.charging.financeconnect.com.br
     method: GET
-    url: /api/
+    path: /api/
+    port: 80
+    protocol: http
   response:
     body: {string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 
