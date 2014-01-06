@@ -31,7 +31,7 @@ setuptools.setup(
     packages=["api_toolkit"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),
-    tests_require=['tox'],
+    tests_require=['tox', 'virtualenv==1.10.1'],
     cmdclass = {'test': Tox},
     test_suite='api_toolkit.tests',
     author="vitormazzi",
