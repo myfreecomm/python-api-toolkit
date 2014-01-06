@@ -284,10 +284,11 @@ class TestResources(TestCase):
                 self.resource.charge_accounts.get(uuid)
 
     def test_setattr_should_update_resource_data_if_it_is_the_same_key(self):
-        resource = Resource({
-            'first': 'first_value',
-            'second': 'second_value',
-        }, session=requests.Session())
+        resource = Resource(
+            first='first_value',
+            second='second_value',
+            session=requests.Session()
+        )
 
         resource.first = 'new_value'
 
@@ -298,10 +299,11 @@ class TestResources(TestCase):
         self.assertEqual(resource.resource_data['first'], 'new_value')
 
     def test_setattr_should_not_update_resource_data_if_the_key_is_not_present(self):
-        resource = Resource({
-            'first': 'first_value',
-            'second': 'second_value',
-        }, session=requests.Session())
+        resource = Resource(
+            first='first_value',
+            second='second_value',
+            session=requests.Session()
+        )
 
         resource.third = 'new_value'
 
@@ -311,10 +313,11 @@ class TestResources(TestCase):
         self.assertEqual(third, 'new_value')
 
     def test_setattr_should_not_set_collections_at_resource_data(self):
-        resource = Resource({
-            'first': 'first_value',
-            'second': 'second_value',
-        }, session=requests.Session())
+        resource = Resource(
+            first='first_value',
+            second='second_value',
+            session=requests.Session()
+        )
 
         col = Collection('http://dummyurl.com/', type='type')
         resource.first = col
@@ -326,9 +329,10 @@ class TestResources(TestCase):
         self.assertEqual(first, col)
 
     def test_getattr_should_prioritize_instance_attributes(self):
-        resource = Resource({
-            'first': 'first_value',
-        }, session=requests.Session())
+        resource = Resource(
+            first='first_value',
+            session=requests.Session()
+        )
 
         resource.second = 'instance_value'
         resource.resource_data.update({'second': 'dict_value'})
