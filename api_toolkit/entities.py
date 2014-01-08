@@ -108,7 +108,8 @@ class Resource(UsingOptions):
     def load(cls, url, **kwargs):
         session = kwargs.pop('session', cls.session_factory.make(**kwargs))
 
-        response = session.get(url)
+        params = cls.session_factory.safe_kwargs(**kwargs)
+        response = session.get(url, params=params)
         response.raise_for_status()
 
         return cls.from_response(response, session)
@@ -223,14 +224,15 @@ class Collection(UsingOptions):
 
             url = response.links['next']['url']
 
-    def get(self, identifier, append_slash=True):
-        if append_slash:
+    def get(self, identifier, **kwargs):
+        if kwargs.pop('append_slash', True):
             url_template = '{0}{1}/'
         else:
             url_template = '{0}{1}'
 
         url = url_template.format(self.url, identifier)
-        return self.resource_class.load(url, session=self._session)
+        kwargs['session'] = self._session
+        return self.resource_class.load(url, **kwargs)
 
     def create(self, **kwargs):
         if 'POST' not in self._meta['allowed_methods']:
