@@ -28,6 +28,13 @@ class SessionFactory(object):
             credentials.get('password', '')
         )
 
+    @classmethod
+    def safe_kwargs(cls, **kwargs):
+        for item in ('session', 'user', 'password'):
+            kwargs.pop(item, None)
+
+        return kwargs
+
 
 class UsingOptions(object):
 
@@ -200,8 +207,9 @@ class Collection(UsingOptions):
             raise ValueError('This collection is not iterable.')
 
         url = self.url
+        params = self.session_factory.safe_kwargs(**kwargs)
         while True:
-            response = self._session.get(url, params=kwargs)
+            response = self._session.get(url, params=params)
             response.raise_for_status()
             for item in response.json():
                 instance = self.resource_class(**item)
