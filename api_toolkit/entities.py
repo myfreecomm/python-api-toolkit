@@ -89,10 +89,6 @@ class Resource(UsingOptions):
         super(Resource, self).__init__(**kwargs)
         self.resource_data = kwargs
 
-    @property
-    def response(self):
-        return self._response
-
     @classmethod
     def from_response(cls, response, session):
         instance = cls(**response.json())
@@ -109,6 +105,10 @@ class Resource(UsingOptions):
         response.raise_for_status()
 
         return cls.from_response(response, session)
+
+    @property
+    def response(self):
+        return self._response
 
     @response.setter
     def response(self, response):
