@@ -5,7 +5,6 @@ import requests
 __all__ = ['Resource', 'Collection']
 
 
-
 class SessionFactory(object):
     default_headers = {
         'Accept': 'application/json',
@@ -193,13 +192,15 @@ class Collection(UsingOptions):
         self._session = kwargs.pop('session', self.session_factory.make(**kwargs))
         self.resource_class = kwargs.get('resource_class', Resource)
 
-    def all(self, load_options=False):
+    def all(self, **kwargs):
+        load_options = kwargs.pop('load_options', False)
+
         if 'GET' not in self._meta['allowed_methods']:
             raise ValueError('This collection is not iterable.')
 
         url = self.url
         while True:
-            response = self._session.get(url)
+            response = self._session.get(url, params=kwargs)
             response.raise_for_status()
             for item in response.json():
                 instance = self.resource_class(**item)
