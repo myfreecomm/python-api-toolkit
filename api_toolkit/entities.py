@@ -182,6 +182,7 @@ class Resource(UsingOptions):
 
 class Collection(UsingOptions):
     session_factory = SessionFactory
+    resource_class = Resource
 
     def __repr__(self):
         return '<api_toolkit.Collection type="%s">' % self.__class__
@@ -190,7 +191,7 @@ class Collection(UsingOptions):
         super(Collection, self).__init__(url, **kwargs)
         self.url = url
         self._session = kwargs.pop('session', self.session_factory.make(**kwargs))
-        self.resource_class = kwargs.get('resource_class', Resource)
+        self.resource_class = kwargs.get('resource_class', self.resource_class)
 
     def all(self, **kwargs):
         load_options = kwargs.pop('load_options', False)
