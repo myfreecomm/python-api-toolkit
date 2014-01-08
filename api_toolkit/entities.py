@@ -200,6 +200,7 @@ class Collection(UsingOptions):
         url = self.url
         while True:
             response = self._session.get(url)
+            response.raise_for_status()
             for item in response.json():
                 instance = self.resource_class(**item)
                 instance._session = self._session
