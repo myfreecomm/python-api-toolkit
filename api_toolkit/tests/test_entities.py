@@ -91,7 +91,7 @@ class TestResourceLoad(TestCase):
 
         for item in response.links.keys():
             self.assertTrue(hasattr(resource, item))
-            self.assertIsInstance(getattr(resource, item), Collection)
+            self.assertTrue(isinstance(getattr(resource, item), Collection))
             self.assertEqual(getattr(resource, item).url, response.links[item]['url'])
 
     def test_created_collections_should_have_a_valid_session(self):
