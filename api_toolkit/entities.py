@@ -41,6 +41,8 @@ class UsingOptions(object):
 
     ALL_METHODS = 'HEAD, OPTIONS, GET, PUT, POST, DELETE'
 
+    _response = None
+
     def __init__(self, *args, **kwargs):
         super(UsingOptions, self).__init__()
         self._meta = {
@@ -64,7 +66,10 @@ class UsingOptions(object):
 
     def load_options(self):
         if self._session and self.url:
-            self.response = self._session.options(self.url)
+            options_response = self._session.options(self.url)
+            if self.response is None:
+                self.response = options_response
+            return options_response
         else:
             raise ValueError('Cannot load options for this instance')
 
@@ -72,8 +77,6 @@ class UsingOptions(object):
 class Resource(UsingOptions):
     url_attribute_name = 'url'
     session_factory = SessionFactory
-
-    _response = None
 
     def __repr__(self):
         return '<api_toolkit.Resource type="%s">' % self.__class__
