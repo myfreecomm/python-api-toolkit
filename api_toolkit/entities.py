@@ -59,6 +59,9 @@ class UsingOptions(object):
     @response.setter
     def response(self, response):
         self._response = response
+        self.update_meta(response)
+
+    def update_meta(self, response):
         self._meta['links'] = response.links
         self._meta['etag'] = response.headers.get('etag', None)
         if 'Allow' in response.headers:
@@ -67,6 +70,7 @@ class UsingOptions(object):
     def load_options(self):
         if self._session and self.url:
             options_response = self._session.options(self.url)
+            self.update_meta(options_response)
             if self.response is None:
                 self.response = options_response
             return options_response
@@ -125,10 +129,7 @@ class Resource(UsingOptions):
     @response.setter
     def response(self, response):
         self._response = response
-        self._meta['links'] = response.links
-        self._meta['etag'] = response.headers.get('etag', None)
-        self._meta['allowed_methods'] = response.headers.get('Allow', self.ALL_METHODS)
-
+        self.update_meta(response)
         self.prepare_collections()
 
     @property
