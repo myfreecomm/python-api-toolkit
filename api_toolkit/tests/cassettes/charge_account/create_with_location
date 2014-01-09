@@ -9,6 +9,7 @@
       - !!python/tuple [Content-Length, !!python/unicode '224']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: POST
     path: /charge-accounts/
@@ -31,6 +32,7 @@
       - !!python/tuple [Content-Length, '0']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/
@@ -58,6 +60,7 @@
       - !!python/tuple [Content-Length, '0']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: OPTIONS
     path: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
@@ -100,6 +103,7 @@
       - !!python/tuple [Content-Length, '0']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: OPTIONS
     path: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/invoices/
@@ -142,6 +146,7 @@
       - !!python/tuple [Content-Length, '0']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: OPTIONS
     path: /charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/batches/

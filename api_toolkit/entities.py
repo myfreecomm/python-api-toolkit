@@ -10,6 +10,7 @@ class SessionFactory(object):
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Content-Length': '0',
+        'Cache-Control': 'no-cache',
         'User-Agent': 'api_toolkit',
     }
 

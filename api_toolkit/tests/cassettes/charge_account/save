@@ -7,6 +7,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/
@@ -44,6 +45,7 @@
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: PUT
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
@@ -65,6 +67,7 @@
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/

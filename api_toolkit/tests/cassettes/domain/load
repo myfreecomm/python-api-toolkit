@@ -1,8 +1,9 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-      - !!python/tuple [Accept, application/json]
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
@@ -19,14 +20,15 @@
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
     headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
         Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
-        Python/2.7.3}
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 200, message: OK}
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-      - !!python/tuple [Accept, application/json]
+    - - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
@@ -43,13 +45,59 @@
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
     headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
         Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
-        Python/2.7.3}
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 200, message: OK}
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
     - - !!python/tuple [accept, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Cache-Control, no-cache]
+    host: sandbox.charging.financeconnect.com.br
+    method: GET
+    path: /domain/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "f1750ae268cb76eaa37eeec8f42290b0da46c042",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:34 GMT', etag: '"f1750ae268cb76eaa37eeec8f42290b0da46c042"',
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Cache-Control, no-cache]
+    host: sandbox.charging.financeconnect.com.br
+    method: GET
+    path: /domain/
+    port: 80
+    protocol: http
+  response:
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
+- request: !!python/object:vcr.request.Request
+    body: null
+    headers: !!python/object/apply:__builtin__.frozenset
+    - - !!python/tuple [Accept, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
       - !!python/tuple [User-Agent, api_toolkit]
@@ -65,33 +113,30 @@
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
     headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
         Jul 2013 23:35:34 GMT', etag: '"f1750ae268cb76eaa37eeec8f42290b0da46c042"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts', server: Werkzeug/0.9.1
-        Python/2.7.3}
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 200, message: OK}
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
     - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Content-Length, '0']
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /domain/
     port: 80
     protocol: http
   response:
-    body: {string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
-
-        <title>401 Unauthorized</title>
-
-        <h1>Unauthorized</h1>
-
-        <p>The server could not verify that you are authorized to access the URL requested.  You
-        either supplied the wrong credentials (e.g. a bad password), or your browser
-        doesn''t understand how to supply the credentials required.</p>
-
-        '}
-    headers: {connection: keep-alive, content-length: '339', content-type: text/html;
-        charset=utf-8, date: 'Fri, 27 Dec 2013 18:57:31 GMT', server: nginx/1.1.19}
-    status: {code: 401, message: UNAUTHORIZED}
+    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+        "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
+        "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
+        "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
+    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
+        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
+      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
+      server: Werkzeug/0.9.1 Python/2.7.3}
+    status: {code: 200, message: OK}
