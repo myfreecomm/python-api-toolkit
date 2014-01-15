@@ -230,7 +230,7 @@ class TestResources(TestCase):
                 password = TEST_API['PASSWORD'],
             )
 
-        with use_cassette('charge_account/save', record_mode='once'):
+        with use_cassette('charge_account/save'):
             charge_account = list(self.resource.charge_accounts.all())[-1]
             resource_data = charge_account.resource_data
 
