@@ -4,6 +4,8 @@ import requests
 
 __all__ = ['Resource', 'Collection']
 
+str_keys = lambda x: dict((str(k), v) for k, v in x.items())
+
 
 class SessionFactory(object):
     default_headers = {
@@ -106,7 +108,7 @@ class Resource(UsingOptions):
 
     @classmethod
     def from_response(cls, response, session):
-        instance = cls(**response.json())
+        instance = cls(**response.json(object_hook=str_keys))
         instance._session = session
         instance.response = response
 
@@ -217,7 +219,7 @@ class Collection(UsingOptions):
         while True:
             response = self._session.get(url, params=params)
             response.raise_for_status()
-            for item in response.json():
+            for item in response.json(object_hook=str_keys):
                 instance = self.resource_class(**item)
                 instance._session = self._session
                 if load_options:

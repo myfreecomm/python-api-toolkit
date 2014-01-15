@@ -1,13 +1,13 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
+    - - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Accept, application/json]
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/
@@ -34,18 +34,18 @@
 - request: !!python/object:vcr.request.Request
     body: '{"account": {"digit": "6", "number": 1432}, "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204",
       "portfolio_code": "11", "agency": {"digit": "", "number": 412}, "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
-      "sequence_numbers": [1, 9999999], "currency": 9, "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
-      "agreement_code": "1234", "national_identifier": "86271628000147", "supplier_name":
-      "Rubia", "address": "Rua do BUSTV", "national_identifier_type": 2, "advance_days":
-      10, "bank": "237", "name": "Bradesco charge_account"}'
+      "name": "Bradesco charge_account", "sequence_numbers": [1, 9999999], "currency":
+      9, "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7", "bank": "237", "national_identifier":
+      "86271628000147", "supplier_name": "Rubia", "address": "Rua do BUSTV", "advance_days":
+      10, "agreement_code": "1234", "national_identifier_type": 2}'
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Length, '587']
+    - - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Content-Length, '587']
+      - !!python/tuple [Accept, application/json]
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: PUT
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
@@ -61,13 +61,13 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+    - - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
       - !!python/tuple [Content-Type, application/json]
       - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
