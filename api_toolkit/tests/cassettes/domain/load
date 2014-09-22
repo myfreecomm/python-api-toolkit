@@ -1,74 +1,76 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Connection, keep-alive]
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-    host: sandbox.charging.financeconnect.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /domain/
-    port: 80
-    protocol: http
+    uri: http://sandbox.charging.financeconnect.com.br/domain/
   response:
-    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+    body: {string: !!python/unicode '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
-    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
-        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
-      server: Werkzeug/0.9.1 Python/2.7.3}
+    headers:
+      content-length: ['345']
+      content-type: [application/json]
+      date: ['Tue, 23 Jul 2013 23:35:33 GMT']
+      etag: ['"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"']
+      link: ['<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts']
+      server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 200, message: OK}
-- request: !!python/object:vcr.request.Request
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
-      - !!python/tuple [Connection, keep-alive]
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
-    host: sandbox.charging.financeconnect.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      Connection: [keep-alive]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /domain/
-    port: 80
-    protocol: http
+    uri: http://sandbox.charging.financeconnect.com.br/domain/
   response:
-    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+    body: {string: !!python/unicode '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
-    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
-        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
-      server: Werkzeug/0.9.1 Python/2.7.3}
+    headers:
+      content-length: ['345']
+      content-type: [application/json]
+      date: ['Tue, 23 Jul 2013 23:35:33 GMT']
+      etag: ['"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"']
+      link: ['<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts']
+      server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 200, message: OK}
-- request: !!python/object:vcr.request.Request
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
-      - !!python/tuple [Connection, keep-alive]
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-    host: sandbox.charging.financeconnect.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /domain/
-    port: 80
-    protocol: http
+    uri: http://sandbox.charging.financeconnect.com.br/domain/
   response:
-    body: {string: '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
+    body: {string: !!python/unicode '{"description": null, "uri": "http://sandbox.charging.financeconnect.com.br/domain/",
         "supplier_name": "Gerardon", "zipcode": "26906660", "city_state": "Rio/RJ",
         "token": "1+OC7QHjQG6H9ITrLQ7CWw==", "etag": "42fc6c09421e9b6af1d21e377e2ce9777b4d1693",
         "address": "Rua BOLADA", "uuid": "b08e44a0-1e0a-4ed4-9f2b-6b5948c8b388"}'}
-    headers: {content-length: '345', content-type: application/json, date: 'Tue, 23
-        Jul 2013 23:35:33 GMT', etag: '"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"',
-      link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
-      server: Werkzeug/0.9.1 Python/2.7.3}
+    headers:
+      content-length: ['345']
+      content-type: [application/json]
+      date: ['Tue, 23 Jul 2013 23:35:33 GMT']
+      etag: ['"42fc6c09421e9b6af1d21e377e2ce9777b4d1693"']
+      link: ['<http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts']
+      server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 200, message: OK}
+version: 1

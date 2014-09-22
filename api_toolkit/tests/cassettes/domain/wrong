@@ -1,20 +1,18 @@
-- request: !!python/object:vcr.request.Request
+interactions:
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic dXNlcjpwYXNz']
-    host: sandbox.charging.financeconnect.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate, compress']
+      Authorization: [!!python/unicode 'Basic dXNlcjpwYXNz']
+      Cache-Control: [no-cache]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /api/
-    port: 80
-    protocol: http
+    uri: http://sandbox.charging.financeconnect.com.br/api/
   response:
-    body: {string: '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+    body: {string: !!python/unicode '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 
         <title>404 Not Found</title>
 
@@ -24,25 +22,25 @@
         manually please check your spelling and try again.</p>
 
         '}
-    headers: {content-length: '233', content-type: text/html, date: 'Tue, 23 Jul 2013
-        23:35:35 GMT', server: Werkzeug/0.9.1 Python/2.7.3}
+    headers:
+      content-length: ['233']
+      content-type: [text/html]
+      date: ['Tue, 23 Jul 2013 23:35:35 GMT']
+      server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 404, message: NOT FOUND}
-- request: !!python/object:vcr.request.Request
+- request:
     body: null
-    headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Connection, keep-alive]
-      - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, Basic dXNlcjpwYXNz]
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
-    host: sandbox.charging.financeconnect.com.br
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic dXNlcjpwYXNz]
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
     method: GET
-    path: /api/
-    port: 80
-    protocol: http
+    uri: http://sandbox.charging.financeconnect.com.br/api/
   response:
     body:
       string: !!binary |
@@ -50,7 +48,12 @@
         3WKfHROk101yiDCdMXZbRYzFWTwOq3CJXa2lYmx7moqAu9opEuv5GqfGYdd0uuBsLANeLcRf61PA
         W5FVBEPvjqyjAtdLgq+00N4uBxuNhvOIJfMhEwKHEn3TgbQj44VhG6SX1J1UqkerSFpCXlH+HEgD
         25JStX5A+jtnesiHrHXIWSuCH7+KaarpAAAA
-    headers: {connection: keep-alive, content-encoding: gzip, content-length: '198',
-      content-type: text/html; charset=utf-8, date: 'Mon, 22 Sep 2014 16:08:03 GMT',
-      server: nginx/1.1.19}
+    headers:
+      connection: [keep-alive]
+      content-encoding: [gzip]
+      content-length: ['198']
+      content-type: [text/html; charset=utf-8]
+      date: ['Mon, 22 Sep 2014 16:08:03 GMT']
+      server: [nginx/1.1.19]
     status: {code: 404, message: NOT FOUND}
+version: 1
