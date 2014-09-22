@@ -3,13 +3,14 @@
       be deleted", "portfolio_code": "12", "agency": {"digit": "", "number": 453},
       "national_identifier": "86271628000147", "bank": "237", "agreement_code": "1444"}'
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-      - !!python/tuple [Content-Length, !!python/unicode '229']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
+    - - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      - !!python/tuple [Connection, keep-alive]
       - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Content-Length, '229']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
     host: sandbox.charging.financeconnect.com.br
     method: POST
     path: /charge-accounts/
@@ -19,20 +20,21 @@
     body: {string: CREATED}
     headers: {content-length: '7', content-type: text/html; charset=utf-8, date: 'Tue,
         23 Jul 2013 23:35:35 GMT', link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/>;
-        rel=charge_account, <http://sandbox.charging.financeconnect.com.br/charge-accounts/>; rel=charge_accounts',
-      location: 'http://sandbox.charging.financeconnect.com.br/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/',
+        rel=charge_account, <http://sandbox.charging.financeconnect.com.br/charge-accounts/>;
+        rel=charge_accounts', location: 'http://sandbox.charging.financeconnect.com.br/charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/',
       server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 201, message: CREATED}
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Connection, keep-alive]
+      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      - !!python/tuple [Accept, application/json]
       - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/976ac42c-4c7a-4dd9-9f10-bc24805dc35f/

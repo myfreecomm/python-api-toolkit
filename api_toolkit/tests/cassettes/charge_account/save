@@ -2,10 +2,11 @@
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
     - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+      - !!python/tuple [Connection, keep-alive]
       - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
       - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
     host: sandbox.charging.financeconnect.com.br
@@ -39,13 +40,14 @@
       "86271628000147", "supplier_name": "Rubia", "address": "Rua do BUSTV", "advance_days":
       10, "agreement_code": "1234", "national_identifier_type": 2}'
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Cache-Control, no-cache]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+    - - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      - !!python/tuple [Connection, keep-alive]
       - !!python/tuple [Content-Length, '587']
-      - !!python/tuple [Accept, application/json]
+      - !!python/tuple [Cache-Control, no-cache]
       - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
       - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
     host: sandbox.charging.financeconnect.com.br
     method: PUT
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
@@ -62,10 +64,11 @@
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
     - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Connection, keep-alive]
+      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
       - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
       - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
     host: sandbox.charging.financeconnect.com.br

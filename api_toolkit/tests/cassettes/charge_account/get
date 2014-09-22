@@ -1,13 +1,14 @@
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
-      - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
-      - !!python/tuple [User-Agent, api_toolkit]
-      - !!python/tuple [Content-Length, '0']
+    - - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      - !!python/tuple [Connection, keep-alive]
       - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Content-Length, '0']
+      - !!python/tuple [Content-Type, application/json]
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
+      - !!python/tuple [User-Agent, api_toolkit]
+      - !!python/tuple [Accept, application/json]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/
@@ -28,19 +29,20 @@
         2, "advance_days": 10, "bank": "237", "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}]'}
     headers: {content-length: '1131', content-type: application/json, date: 'Tue,
         23 Jul 2013 23:35:34 GMT', link: '<http://sandbox.charging.financeconnect.com.br/charge-accounts/banks/>;
-        rel=banks, <http://sandbox.charging.financeconnect.com.br/charge-accounts/currencies/>; rel=currencies',
-      server: Werkzeug/0.9.1 Python/2.7.3}
+        rel=banks, <http://sandbox.charging.financeconnect.com.br/charge-accounts/currencies/>;
+        rel=currencies', server: Werkzeug/0.9.1 Python/2.7.3}
     status: {code: 200, message: OK}
 - request: !!python/object:vcr.request.Request
     body: null
     headers: !!python/object/apply:__builtin__.frozenset
-    - - !!python/tuple [Accept, application/json]
-      - !!python/tuple [Authorization, !!python/unicode 'Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==']
+    - - !!python/tuple [Cache-Control, no-cache]
+      - !!python/tuple [Connection, keep-alive]
+      - !!python/tuple [Authorization, Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      - !!python/tuple [Accept, application/json]
       - !!python/tuple [Content-Type, application/json]
-      - !!python/tuple [Accept-Encoding, 'gzip, deflate, compress']
+      - !!python/tuple [Accept-Encoding, 'gzip, deflate']
       - !!python/tuple [User-Agent, api_toolkit]
       - !!python/tuple [Content-Length, '0']
-      - !!python/tuple [Cache-Control, no-cache]
     host: sandbox.charging.financeconnect.com.br
     method: GET
     path: /charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
