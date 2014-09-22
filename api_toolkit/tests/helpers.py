@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
-from vcr import VCR                                                  
+from vcr import VCR
 
 __all__ = ['use_cassette']
 
