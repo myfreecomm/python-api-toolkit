@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import os
 from unittest import TestCase
 import vcr
 import requests
 
-from helpers import use_cassette
+from .helpers import use_cassette
 from api_toolkit import Resource, Collection
 
 __all__ = ['TestResourceLoad', 'TestCollections', 'TestResources']
@@ -187,7 +188,7 @@ class TestCollections(TestCase):
         self.assertTrue(isinstance(charge_account, Resource))
 
         for item in data.items():
-            self.assertTrue(charge_account.resource_data.has_key(item[0]))
+            self.assertTrue(item[0] in charge_account.resource_data)
             self.assertEqual(charge_account.resource_data[item[0]], item[1])
 
         self.assertEqual(charge_account._session, self.resource.charge_accounts._session)
@@ -211,7 +212,7 @@ class TestCollections(TestCase):
         self.assertTrue(isinstance(charge_account, Resource))
 
         for item in data.items():
-            self.assertTrue(charge_account.resource_data.has_key(item[0]))
+            self.assertTrue(item[0] in charge_account.resource_data)
             self.assertEqual(charge_account.resource_data[item[0]], item[1])
 
         self.assertEqual(charge_account._session, self.resource.charge_accounts._session)
@@ -279,7 +280,7 @@ class TestResources(TestCase):
 
         self.assertRaises(AttributeError, object.__getattribute__, resource, 'first')
 
-        self.assertTrue(resource.resource_data.has_key('first'))
+        self.assertTrue('first' in resource.resource_data)
         self.assertEqual(resource.resource_data['first'], 'new_value')
 
     def test_setattr_should_not_update_resource_data_if_the_key_is_not_present(self):
@@ -293,7 +294,7 @@ class TestResources(TestCase):
 
         third = object.__getattribute__(resource, 'third')
 
-        self.assertFalse(resource.resource_data.has_key('third'))
+        self.assertFalse('third' in resource.resource_data)
         self.assertEqual(third, 'new_value')
 
     def test_setattr_should_not_set_collections_at_resource_data(self):
@@ -308,7 +309,7 @@ class TestResources(TestCase):
 
         first = object.__getattribute__(resource, 'first')
 
-        self.assertTrue(resource.resource_data.has_key('first'))
+        self.assertTrue('first' in resource.resource_data)
         self.assertEqual(resource.resource_data['first'], 'first_value')
         self.assertEqual(first, col)
 

@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"account": {"digit": "1", "number": 1633}, "name": "Charge Account to
-      be deleted", "portfolio_code": "12", "agency": {"digit": "", "number": 453},
-      "national_identifier": "86271628000147", "bank": "237", "agreement_code": "1444"}'
+    body: '{"account": {"digit": "1", "number": 1633}, "agency": {"digit": "", "number":
+      453}, "agreement_code": "1444", "bank": "237", "name": "Charge Account to be
+      deleted", "national_identifier": "86271628000147", "portfolio_code": "12"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

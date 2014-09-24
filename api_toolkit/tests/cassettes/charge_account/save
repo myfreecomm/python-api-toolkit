@@ -13,10 +13,9 @@ interactions:
     method: GET
     uri: http://sandbox.charging.financeconnect.com.br/charge-accounts/
   response:
-    body: {string: !!python/unicode '[{"account": {"digit": "6", "number": 1432},
-        "agency": {"digit": "", "number": 412}, "name": "Bradesco charge_account",
-        "etag": "45c22499e98ddb438ef50ddae85fe1cd44bfab05", "portfolio_code": "11",
-        "supplier_name": "Gerardon", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/",
+    body: {string: '[{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "45c22499e98ddb438ef50ddae85fe1cd44bfab05",
+        "portfolio_code": "11", "supplier_name": "Gerardon", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/d69a42d5-90e0-4fca-a244-6c8f01bae477/",
         "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
         "agreement_code": "1234", "address": "Rua BOLADA", "national_identifier_type":
         2, "advance_days": 10, "bank": "237", "uuid": "d69a42d5-90e0-4fca-a244-6c8f01bae477"},
@@ -36,12 +35,13 @@ interactions:
       server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 200, message: OK}
 - request:
-    body: '{"account": {"digit": "6", "number": 1432}, "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204",
-      "portfolio_code": "11", "agency": {"digit": "", "number": 412}, "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
-      "name": "Bradesco charge_account", "sequence_numbers": [1, 9999999], "currency":
-      9, "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7", "bank": "237", "national_identifier":
-      "86271628000147", "supplier_name": "Rubia", "address": "Rua do BUSTV", "advance_days":
-      10, "agreement_code": "1234", "national_identifier_type": 2}'
+    body: '{"account": {"digit": "6", "number": 1432}, "address": "Rua do BUSTV",
+      "advance_days": 10, "agency": {"digit": "", "number": 412}, "agreement_code":
+      "1234", "bank": "237", "currency": 9, "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
+      "name": "Bradesco charge_account", "national_identifier": "86271628000147",
+      "national_identifier_type": 2, "portfolio_code": "11", "sequence_numbers": [1,
+      9999999], "supplier_name": "Rubia", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
+      "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']
@@ -54,7 +54,7 @@ interactions:
     method: PUT
     uri: http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
   response:
-    body: {string: !!python/unicode ''}
+    body: {string: ''}
     headers:
       content-length: ['0']
       content-type: [text/html; charset=utf-8]
@@ -78,8 +78,8 @@ interactions:
     method: GET
     uri: http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
   response:
-    body: {string: !!python/unicode '{"account": {"digit": "6", "number": 1432}, "agency":
-        {"digit": "", "number": 412}, "name": "Bradesco charge_account", "etag": "b04b86c23e1308d313558a9325d3bf19b136c75d",
+    body: {string: '{"account": {"digit": "6", "number": 1432}, "agency": {"digit":
+        "", "number": 412}, "name": "Bradesco charge_account", "etag": "b04b86c23e1308d313558a9325d3bf19b136c75d",
         "portfolio_code": "11", "supplier_name": "Rubia", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
         "sequence_numbers": [1, 9999999], "currency": 9, "national_identifier": "86271628000147",
         "agreement_code": "1234", "address": "Rua do BUSTV", "national_identifier_type":
@@ -94,4 +94,34 @@ interactions:
           rel=invoices']
       server: [Werkzeug/0.9.1 Python/2.7.3]
     status: {code: 200, message: OK}
+- request:
+    body: '{"account": {"digit": "6", "number": 1432}, "address": "Rua do BUSTV",
+      "advance_days": 10, "agency": {"digit": "", "number": 412}, "agreement_code":
+      "1234", "bank": "237", "currency": 9, "etag": "697525700407ac2f90ce38a10b6462fe39ca65e7",
+      "name": "Bradesco charge_account", "national_identifier": "86271628000147",
+      "national_identifier_type": 2, "portfolio_code": "11", "sequence_numbers": [1,
+      9999999], "supplier_name": "Rubia", "uri": "http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/",
+      "uuid": "fa8b43e5-5ea2-4c98-84d3-162a151a9204"}'
+    headers:
+      Accept: [application/json]
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Basic OjErT0M3UUhqUUc2SDlJVHJMUTdDV3c9PQ==]
+      Cache-Control: [no-cache]
+      Connection: [keep-alive]
+      Content-Length: ['587']
+      Content-Type: [application/json]
+      User-Agent: [api_toolkit]
+    method: PUT
+    uri: http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/
+  response:
+    body: {string: ''}
+    headers:
+      content-length: ['0']
+      content-type: [text/html; charset=utf-8]
+      date: ['Tue, 23 Jul 2013 23:42:00 GMT']
+      link: ['<http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/>;
+          rel=charge_account']
+      location: ['http://sandbox.charging.financeconnect.com.br/charge-accounts/fa8b43e5-5ea2-4c98-84d3-162a151a9204/']
+      server: [Werkzeug/0.9.1 Python/2.7.3]
+    status: {code: 204, message: NO CONTENT}
 version: 1

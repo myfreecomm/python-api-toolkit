@@ -89,7 +89,7 @@ class Resource(UsingOptions):
 
     def __setattr__(self, name, value):
         if (hasattr(self, 'resource_data')
-            and self.resource_data.has_key(name)
+            and name in self.resource_data
             and not isinstance(value, Collection)):
 
             self.resource_data[name] = value
@@ -153,13 +153,13 @@ class Resource(UsingOptions):
             raise ValueError('This resource cannot be saved.')
 
         if self._meta['fields'] is None:
-            dumped_data = json.dumps(self.resource_data)
+            dumped_data = json.dumps(self.resource_data, sort_keys=True)
         else:
             filtered_data = dict((k, v)
                 for k, v in self.resource_data.items()
                 if k in self._meta['fields']
             )
-            dumped_data = json.dumps(filtered_data)
+            dumped_data = json.dumps(filtered_data, sort_keys=True)
 
         headers = {
             'Content-Length': str(len(dumped_data))
@@ -226,7 +226,7 @@ class Collection(UsingOptions):
                     instance.load_options()
                 yield instance
 
-            if not response.links.has_key('next'):
+            if not 'next' in response.links:
                 break
 
             url = response.links['next']['url']
@@ -245,7 +245,7 @@ class Collection(UsingOptions):
         if 'POST' not in self._meta['allowed_methods']:
             raise ValueError('No items can be created for this collection.')
 
-        resource_data = json.dumps(kwargs)
+        resource_data = json.dumps(kwargs, sort_keys=True)
         response = self._session.post(
             self.url,
             headers={'content-length': str(len(resource_data))},
@@ -253,7 +253,7 @@ class Collection(UsingOptions):
         )
 
         response.raise_for_status()
-        
+
         try:
             instance = self.resource_class.from_response(
                 response=response, session=self._session

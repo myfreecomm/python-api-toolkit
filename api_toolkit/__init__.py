@@ -1,1 +1,1 @@
-from entities import Resource, Collection
+from .entities import Resource, Collection

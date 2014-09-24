@@ -1,8 +1,8 @@
 interactions:
 - request:
-    body: '{"account": {"digit": "6", "number": 1432}, "name": "Bradesco charge_account",
-      "portfolio_code": "11", "agency": {"digit": "", "number": 412}, "national_identifier":
-      "86271628000147", "bank": "237", "agreement_code": "1234"}'
+    body: '{"account": {"digit": "6", "number": 1432}, "agency": {"digit": "", "number":
+      412}, "agreement_code": "1234", "bank": "237", "name": "Bradesco charge_account",
+      "national_identifier": "86271628000147", "portfolio_code": "11"}'
     headers:
       Accept: [application/json]
       Accept-Encoding: ['gzip, deflate']

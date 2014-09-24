@@ -27,11 +27,11 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name="api_toolkit",
-    version="0.3.6",
+    version="0.3.7",
     packages=["api_toolkit"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),
-    tests_require=['tox==1.6.1', 'virtualenv==1.10.1'],
+    tests_require=['tox==1.6.1', 'virtualenv>=1.11.2'],
     cmdclass = {'test': Tox},
     test_suite='api_toolkit.tests',
     author="vitormazzi",
