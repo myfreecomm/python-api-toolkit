@@ -100,7 +100,11 @@ class Resource(UsingOptions):
         try:
             return object.__getattribute__(self, name)
         except AttributeError:
-            return object.__getattribute__(self, 'resource_data')[name]
+            resource_data = object.__getattribute__(self, 'resource_data')
+            if name in resource_data:
+                return resource_data[name]
+            else:
+                raise
 
     def __init__(self, **kwargs):
         super(Resource, self).__init__(**kwargs)
