@@ -27,7 +27,7 @@ class Tox(TestCommand):
 
 setuptools.setup(
     name="api_toolkit",
-    version="0.3.7",
+    version="0.3.9",
     packages=["api_toolkit"],
     include_package_data=True,  # declarations in MANIFEST.in
     install_requires=open(join(dirname(__file__), 'requirements.txt')).readlines(),
