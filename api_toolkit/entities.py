@@ -32,11 +32,11 @@ class SessionFactory(object):
         )
 
     @classmethod
-    def safe_kwargs(cls, **kwargs):
+    def safe_params(cls, **kwargs):
         for item in ('session', 'user', 'password'):
             kwargs.pop(item, None)
 
-        return kwargs
+        return sorted(kwargs.items(), key=lambda t: t[0])
 
 
 class UsingOptions(object):
@@ -122,7 +122,7 @@ class Resource(UsingOptions):
     def load(cls, url, **kwargs):
         session = kwargs.pop('session', cls.session_factory.make(**kwargs))
 
-        params = cls.session_factory.safe_kwargs(**kwargs)
+        params = cls.session_factory.safe_params(**kwargs)
         response = session.get(url, params=params)
         response.raise_for_status()
 
@@ -219,7 +219,7 @@ class Collection(UsingOptions):
             raise ValueError('This collection is not iterable.')
 
         url = self.url
-        params = self.session_factory.safe_kwargs(**kwargs)
+        params = self.session_factory.safe_params(**kwargs)
         while True:
             response = self._session.get(url, params=params)
             response.raise_for_status()
