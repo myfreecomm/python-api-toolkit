@@ -2,8 +2,7 @@ Python-API-toolkit
 ==================
 Python-API-toolkit is a module that focuses on dealing with REST APIs in a simple way. The API will need to follow some simple rules to be supported.
 
-.. image:: https://travis-ci.org/myfreecomm/python-api-toolkit.png?branch=master
-        :target: https://travis-ci.org/myfreecomm/python-api-toolkit
+[![Build Status](https://travis-ci.org/myfreecomm/python-api-toolkit.svg?branch=master)](https://travis-ci.org/myfreecomm/python-api-toolkit)
 
 
 Demonstration
