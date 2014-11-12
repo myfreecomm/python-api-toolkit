@@ -110,6 +110,15 @@ class Resource(UsingOptions):
         super(Resource, self).__init__(**kwargs)
         self.resource_data = kwargs
 
+    def _collection_from_link(self, link_name):
+        action_link = self._meta['links'].get(link_name, None)
+        if not action_link:
+            raise ValueError('The url for this operation is not set')
+
+        return Collection(
+            action_link['url'], session=self._session, resource_class=self.__class__
+        )
+
     @classmethod
     def from_response(cls, response, session):
         instance = cls(**response.json(object_hook=str_keys))
@@ -146,10 +155,10 @@ class Resource(UsingOptions):
         for item in self._meta['links'].values():
             link_name = item['rel']
             link_url = item['url']
-            link_collection = Collection(
-                link_url, session=self._session
-            )
+            if (link_url == self.url) or hasattr(self, link_name):
+                continue
 
+            link_collection = self._collection_from_link(link_name)
             setattr(self, link_name, link_collection)
 
     def save(self):

@@ -22,7 +22,6 @@ class TestResourceLoad(TestCase):
     def setUp(self):
         Resource.url_attribute_name = TEST_API['URL_ATTRIBUTE_NAME']
 
-
     def test_should_load_resource_informations_on_load(self):
         with use_cassette('domain/load'):
             resource = Resource.load(
@@ -94,6 +93,57 @@ class TestResourceLoad(TestCase):
             self.assertTrue(hasattr(resource, item))
             self.assertTrue(isinstance(getattr(resource, item), Collection))
             self.assertEqual(getattr(resource, item).url, response.links[item]['url'])
+
+    def test_collection_resource_class_is_the_same_as_the_base_resource(self):
+        class ResourceChild(Resource):
+            pass
+
+        with use_cassette('domain/load'):
+            resource = ResourceChild.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
+            response = requests.get(
+                url = TEST_API['ENTRYPOINT'],
+                auth = ('', TEST_API['PASSWORD']),
+                headers = {
+                    'Accept': 'application/json',
+                    'User-Agent': 'api_toolkit',
+                },
+            )
+
+        for item in response.links.keys():
+            self.assertTrue(hasattr(resource, item))
+            self.assertTrue(isinstance(getattr(resource, item), Collection))
+            self.assertEqual(getattr(resource, item).resource_class, ResourceChild)
+
+    def test_should_not_create_collection_if_resource_already_has_a_method_with_the_same_name(self):
+        class ResourceChild(Resource):
+            def charge_accounts(self):
+                return 'method defined at the resource'
+
+        with use_cassette('domain/load'):
+            resource = ResourceChild.load(
+                url = TEST_API['ENTRYPOINT'],
+                user = TEST_API['USER'],
+                password = TEST_API['PASSWORD'],
+            )
+
+            response = requests.get(
+                url = TEST_API['ENTRYPOINT'],
+                auth = ('', TEST_API['PASSWORD']),
+                headers = {
+                    'Accept': 'application/json',
+                    'User-Agent': 'api_toolkit',
+                },
+            )
+
+        for item in response.links.keys():
+            self.assertTrue(hasattr(resource, item))
+            self.assertFalse(isinstance(getattr(resource, item), Collection))
+            self.assertEqual(getattr(resource, item)(), 'method defined at the resource')
 
     def test_created_collections_should_have_a_valid_session(self):
         with use_cassette('domain/load'):
